@@ -38,14 +38,23 @@ SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -O3 -fsee -fomit-frame-pointer -
 # Add plain cmake packages 
 FIND_PACKAGE(OpenCV 3 REQUIRED)
 FIND_PACKAGE(Eigen3 REQUIRED)
+set(Sophus_DIR "/home/wys/pkg/Sophus_Non_template/Sophus/build")
 FIND_PACKAGE(Sophus REQUIRED)
+MESSAGE (STATUS "@@@@@@dern: ${Sophus_INCLUDE_DIRS}")
+MESSAGE (STATUS "1", "@@@@@@dern: ${Sophus_LIBRARY_DIRS}")
 FIND_PACKAGE(fast REQUIRED)
 FIND_PACKAGE(Boost REQUIRED COMPONENTS thread system filesystem)
 
-IF(HAVE_MRPT)
-    SET(MRPT_DONT_USE_DBG_LIBS 1) #use release libraries for linking even if "Debug" CMake build
-    FIND_PACKAGE(MRPT REQUIRED base opengl gui)
-ENDIF()
+# IF(HAVE_MRPT)
+#     set(MRPT_DIR "/home/wys/pkg/mrpt1.5.7/mrpt-1.5.7/install/share/mrpt")
+#     SET(MRPT_DONT_USE_DBG_LIBS 1) #use release libraries for linking even if "Debug" CMake build
+#     FIND_PACKAGE(MRPT REQUIRED base opengl gui)
+#     # FIND_PACKAGE(MRPT REQUIRED)
+# ENDIF()
+set(MRPT_DIR "/home/wys/pkg/mrpt1.5.7/mrpt-1.5.7/install/share/mrpt")
+include_directories("/home/wys/pkg/mrpt1.5.7/mrpt-1.5.7/install/include/mrpt/opengl/include")
+# SET(MRPT_DONT_USE_DBG_LIBS 1) #use release libraries for linking even if "Debug" CMake build
+FIND_PACKAGE(MRPT REQUIRED base opengl gui)
 
 FIND_LIBRARY(YAML_CPP_LIBRARIES yaml-cpp)
 if(NOT YAML_CPP_LIBRARIES)
@@ -64,6 +73,7 @@ INCLUDE_DIRECTORIES(
   ${Eigen3_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIRS}
   ${Sophus_INCLUDE_DIRS}
+  # "/home/wys/pkg/Sophus_Non_template/Sophus/install/lib/libSophus.so"
   ${Boost_INCLUDE_DIRS}
   ${fast_INCLUDE_DIRS}
   ${YAML_CPP_INCLUDE_DIRS}
@@ -73,11 +83,11 @@ INCLUDE_DIRECTORIES(
 # Set link libraries
 LIST(APPEND LINK_LIBS 
   ${OpenCV_LIBS}
-  #${Sophus_LIBRARIES}
+  ${Sophus_LIBRARIES}
   ${Boost_LIBRARIES}
   ${fast_LIBRARIES}
   ${YAML_CPP_LIBRARIES}
-  ~/libs/Sophus/build/libSophus.so
+  # "/home/wys/pkg/Sophus_Non_template/Sophus/install/lib/libSophus.so"
   ${PROJECT_SOURCE_DIR}/3rdparty/line_descriptor/lib/liblinedesc.so
 )
 
