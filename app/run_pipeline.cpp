@@ -771,6 +771,8 @@ int main(int argc, char** argv)
     std::cout<<"===================="<<dataset_dir<<std::endl;
 
     // Read content of the .yaml dataset configuration file
+    // YAML 是 "YAML Ain't a Markup Language"（YAML 不是一种标记语言）的递归缩写。
+    // 在开发的这种语言时，YAML 的意思其实是："Yet Another Markup Language"（仍是一种标记语言）
     YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params.yaml");
     // string img_dir = dataset_dir + "/" + dset_config["images_subfolder"].as<string>();
     string img_dir = dataset_dir;
