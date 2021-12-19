@@ -54,7 +54,7 @@ std::string to_string_with_precision(const T a_value, const int n = 6)
     return out.str();
 }
 
-class sceneRepresentation{
+class sceneRepresentation{//mrpt 的显示方法
 
 public:
 

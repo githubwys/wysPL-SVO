@@ -37,6 +37,7 @@
 namespace plsvo {
 namespace initialization {
 
+//先处理第一帧，设置第一帧以进行身份转换，第一帧视为关键帧，进行特征提取并添加关键帧
 InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
 {
   reset();
@@ -53,6 +54,7 @@ InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
   return SUCCESS;
 }
 
+// 对第二帧进行klt光流跟踪
 InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
 {
   trackKlt(frame_ref_, frame_cur, px_ref_, px_cur_, f_ref_, f_cur_, disparities_);

@@ -141,6 +141,7 @@ FrameHandlerMono::~FrameHandlerMono()
   delete depth_filter_;
 }
 
+//开始对图像进行处理
 void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp)
 {
 
@@ -157,10 +158,11 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp)
   SVO_START_TIMER("pyramid_creation");
   // The Frame constructor initializes new_frame_
   // and creates the image pyramid (also stored in Frame as img_pyr_)
+  // Frame类初始化为new_frame_，创建图像金字塔（也作为img_pyr_存储在Frame中）
   new_frame_.reset(new Frame(cam_, img.clone(), timestamp));
   SVO_STOP_TIMER("pyramid_creation");
 
-  // process frame
+  // process frame //处理图像帧 
   UpdateResult res = RESULT_FAILURE;
   if(stage_ == STAGE_DEFAULT_FRAME)
     res = processFrame();
@@ -180,6 +182,7 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp)
   finishFrameProcessingCommon(last_frame_->id_, res, last_frame_->nObs(), last_frame_->nLsObs());
 }
 
+//开始对图像进行处理
 void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp, cv::Mat& rec)
 {
 
@@ -220,6 +223,7 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp, cv::
   finishFrameProcessingCommon(last_frame_->id_, res, last_frame_->nObs(), last_frame_->nLsObs());
 }
 
+// 先处理第一帧，设置第一帧以进行身份转换，第一帧视为关键帧，进行特征提取并添加关键帧
 FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
 {
   // set first frame to identity transformation
@@ -234,6 +238,7 @@ FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
   return RESULT_IS_KEYFRAME;
 }
 
+// 循环过来，对第二帧进行跟踪
 FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
 {
   initialization::InitResult res = klt_homography_init_.addSecondFrame(new_frame_);
@@ -260,6 +265,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   return RESULT_IS_KEYFRAME;
 }
 
+// 从第三帧开始进入正常处理
 FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 {
   // Set initial pose TODO use prior

@@ -24,6 +24,8 @@
 **																			**
 *****************************************************************************/
 
+// 稀疏图像对齐
+// sparse_img_align.cpp/h 提供稀疏图像对齐函数
 
 #ifndef SVO_SPARSE_IMG_ALIGN_H_
 #define SVO_SPARSE_IMG_ALIGN_H_

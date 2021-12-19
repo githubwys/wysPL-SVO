@@ -55,6 +55,7 @@
 
 using namespace std;
 
+// 首先定义了 svo_options的数据结构，里面包含的是程序的运行参数
 struct svo_options {
     int seq_offset;
     int seq_step;
@@ -68,9 +69,10 @@ struct svo_options {
     string map_out;
 };
 
+// 在plsvo命名空间下声明了一个 ConvergedSeed 结构类型和BenchmarkNode类
 namespace plsvo {
 
-struct ConvergedSeed {
+struct ConvergedSeed { //汇聚结构
   int x_, y_;
   Vector3d pos_;
   cv::Vec3b col_;
@@ -79,14 +81,14 @@ struct ConvergedSeed {
   {}
 };
 
-class BenchmarkNode
-{
+class BenchmarkNode// 基准类 //详细介绍BenchmarkNode类，他包含了主程序的主要功能函数
+{//4个私有成员
   vk::AbstractCamera* cam_;
   FrameHandlerMono* vo_;
   DepthFilter* depth_filter_;
   std::list<ConvergedSeed> results_;
 
-public:
+public://公开的成员函数
   BenchmarkNode(vk::AbstractCamera *cam_);
   BenchmarkNode(vk::AbstractCamera *cam_, const plsvo::FrameHandlerMono::Options& handler_opts);
   ~BenchmarkNode();
@@ -97,7 +99,8 @@ public:
   int runFromFolder(vk::ATANCamera* cam_,    svo_options opts);
 };
 
-BenchmarkNode::BenchmarkNode(vk::AbstractCamera* cam_)
+//负责启动视觉里程计的同名构造函数
+BenchmarkNode::BenchmarkNode(vk::AbstractCamera* cam_)//同名构造函数1   参数不同
 {
   vo_ = new plsvo::FrameHandlerMono(cam_);
   vo_->start();
@@ -105,19 +108,21 @@ BenchmarkNode::BenchmarkNode(vk::AbstractCamera* cam_)
 
 BenchmarkNode::BenchmarkNode(
     vk::AbstractCamera* cam_,
-    const plsvo::FrameHandlerMono::Options& handler_opts)
+    const plsvo::FrameHandlerMono::Options& handler_opts)//同名构造函数2    参数不同
 {
   vo_ = new plsvo::FrameHandlerMono(cam_, handler_opts);
   vo_->start();
 }
 
-BenchmarkNode::~BenchmarkNode()
+//一个类有且仅有一个析构函数。如果定义类时没写析构函数，则编译器生成默认析构函数。如果定义了析构函数，则编译器不生成默认析构函数。
+BenchmarkNode::~BenchmarkNode()//析构函数
 {
   delete vo_;
   delete cam_;
 }
 
-void BenchmarkNode::depthFilterCbPt(plsvo::Point* point)
+//点和线特征的深度滤波器函数
+void BenchmarkNode::depthFilterCbPt(plsvo::Point* point)//point点的深度滤波器
 {
   cv::Vec3b color = point->obs_.front()->frame->img_pyr_[0].at<cv::Vec3b>(point->obs_.front()->px[0], point->obs_.front()->px[1]);
   results_.push_back(ConvergedSeed(
@@ -125,7 +130,7 @@ void BenchmarkNode::depthFilterCbPt(plsvo::Point* point)
   delete point->obs_.front();
 }
 
-void BenchmarkNode::depthFilterCbLs(plsvo::LineSeg* ls)
+void BenchmarkNode::depthFilterCbLs(plsvo::LineSeg* ls)//line线的深度滤波器
 {
   cv::Vec3b color = ls->obs_.front()->frame->img_pyr_[0].at<cv::Vec3b>(ls->obs_.front()->spx[0], ls->obs_.front()->spx[1]);
   results_.push_back(ConvergedSeed(
@@ -133,6 +138,7 @@ void BenchmarkNode::depthFilterCbLs(plsvo::LineSeg* ls)
   delete ls->obs_.front();
 }
 
+//int BenchmarkNode::runFromFolder是算法的主流程，读取数据文件并运行。
 int BenchmarkNode::runFromFolder(svo_options opts)
 {
     // grab options
@@ -148,10 +154,10 @@ int BenchmarkNode::runFromFolder(svo_options opts)
     string traj_out    = opts.traj_out;
     int fps_           = 30;
 
-    // Read content of the .yaml dataset configuration file
+    // Read content of the .yaml dataset configuration file //读参数文件
     YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params.yaml");
 
-    // get a sorted list of files in the img directory
+    // get a sorted list of files in the img directory //读img
     boost::filesystem::path img_dir_path(images_dir.c_str());
     if (!boost::filesystem::exists(img_dir_path))
     {
@@ -179,6 +185,7 @@ int BenchmarkNode::runFromFolder(svo_options opts)
     }
 
     // sort them by filename; add leading zeros to make filename-lengths equal if needed
+    // 按文件名排序; 如果需要，添加前导零以使文件名长度相等
     std::map<std::string, std::string> sorted_imgs;
     int n_imgs = 0;
     for (std::list<std::string>::iterator img = imgs.begin(); img != imgs.end(); ++img)
@@ -191,7 +198,7 @@ int BenchmarkNode::runFromFolder(svo_options opts)
     int seq_end = n_imgs;
     if( seq_length != 0 )
         int seq_end = std::min( seq_length*seq_step+seq_offset, n_imgs );
-    std::map<std::string, std::string> sorted_imgs_aux = sorted_imgs;
+    std::map<std::string, std::string> sorted_imgs_aux = sorted_imgs;//根据初始偏移，步长和数据长度把图像数据存储到
     sorted_imgs.clear();
     int k = 0;
     for (auto img = sorted_imgs_aux.begin(); img != sorted_imgs_aux.end(); std::advance(img,seq_step) )
@@ -201,7 +208,7 @@ int BenchmarkNode::runFromFolder(svo_options opts)
         k++;
     }
 
-    // create scene
+    // create scene//场景初始化
     sceneRepresentation scene("../app/scene_config.ini");
     Matrix<double,4,4> T_c_w, T_f_w = Matrix<double,4,4>::Identity(), T_f_w_prev = Matrix<double,4,4>::Identity(), T_inc;
     T_c_w = Matrix<double,4,4>::Identity();
@@ -217,7 +224,7 @@ int BenchmarkNode::runFromFolder(svo_options opts)
         boost::filesystem::path img_path = img_dir_path / boost::filesystem::path(it->second.c_str());
         if (frame_counter == 1)
             std::cout << "reading image " << img_path.string() << std::endl;
-        cv::Mat img(cv::imread(img_path.string(), CV_8UC3));
+        cv::Mat img(cv::imread(img_path.string(), CV_8UC3));//进入循环读入图像进行处理
         //cv::cvtColor( img, img, cv::COLOR_BGR2GRAY);
         // IMPORTANT: The image must be flipped if focal length is negative
         // since the optimization code assumes that both f_x and f_y are positive
@@ -325,10 +332,10 @@ int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts)
     string traj_out    = opts.traj_out;
     int fps_           = 30;
 
-    // Read content of the .yaml dataset configuration file
+    // Read content of the .yaml dataset configuration file //读参数文件
     YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params.yaml");
 
-    // get a sorted list of files in the img directory
+    // get a sorted list of files in the img directory //读img
     boost::filesystem::path img_dir_path(images_dir.c_str());
     if (!boost::filesystem::exists(img_dir_path))
     {
@@ -356,6 +363,7 @@ int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts)
     }
 
     // sort them by filename; add leading zeros to make filename-lengths equal if needed
+    // 按文件名排序; 如果需要，添加前导零以使文件名长度相等
     std::map<std::string, std::string> sorted_imgs;
     int n_imgs = 0;
     for (std::list<std::string>::iterator img = imgs.begin(); img != imgs.end(); ++img)
@@ -368,7 +376,7 @@ int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts)
     int seq_end = n_imgs;
     if( seq_length != 0 )
         int seq_end = std::min( seq_length*seq_step+seq_offset, n_imgs );
-    std::map<std::string, std::string> sorted_imgs_aux = sorted_imgs;
+    std::map<std::string, std::string> sorted_imgs_aux = sorted_imgs;//根据初始偏移，步长和数据长度把图像数据存储到
     sorted_imgs.clear();
     int k = 0;
     for (auto img = sorted_imgs_aux.begin(); img != sorted_imgs_aux.end(); std::advance(img,seq_step) )
@@ -378,8 +386,8 @@ int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts)
         k++;
     }
 
-    // create scene
-    sceneRepresentation scene("../app/scene_config.ini");
+    // create scene//场景初始化         //运行SVO进行姿态估计
+    sceneRepresentation scene("../app/scene_config.ini");// 读入mrpt显示配置
     Matrix<double,4,4> T_c_w, T_f_w = Matrix<double,4,4>::Identity(), T_f_w_prev = Matrix<double,4,4>::Identity(), T_inc;
     T_c_w = Matrix<double,4,4>::Identity();
     scene.initializeScene(T_f_w);
@@ -394,7 +402,7 @@ int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts)
         boost::filesystem::path img_path = img_dir_path / boost::filesystem::path(it->second.c_str());
         if (frame_counter == 1)
             std::cout << "reading image " << img_path.string() << std::endl;
-        cv::Mat img(cv::imread(img_path.string(), CV_8UC1));
+        cv::Mat img(cv::imread(img_path.string(), CV_8UC1));//进入循环读入图像进行处理
         // IMPORTANT: The image must be flipped if focal length is negative
         // since the optimization code assumes that both f_x and f_y are positive
         {
@@ -408,9 +416,9 @@ int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts)
 
         // undistort image
         cv::Mat img_rec;
-        cam_->undistortImage(img,img_rec);
+        cam_->undistortImage(img,img_rec);//图像去畸变
 
-        // process frame
+        // process frame    //开始对图像进行处理
         vo_->addImage(img_rec, frame_counter / (double)fps_);
 
         // display tracking quality
@@ -711,7 +719,7 @@ const cv::String keys =
 
 int main(int argc, char** argv)
 {
-
+    std::cout<<"==========test=========="<<std::endl;
     cv::CommandLineParser parser(argc, argv, keys);
     parser.about("SVO test: run_pipeline");
     if (parser.has("help"))
@@ -756,12 +764,17 @@ int main(int argc, char** argv)
         parser.printErrors();
         return 0;
     }
-    std::string dataset_dir( std::getenv("DATASETS_DIR") + dataset_name );
+    // std::string dataset_dir( std::getenv("DATASETS_DIR") + dataset_name );
+    // std::string dataset_dir("/home/wys/slam/data/EuRoC/MH_01_easy"+ dataset_name );
+    std::string dataset_dir="/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam0/data";
     opts.dataset_dir = dataset_dir;
+    std::cout<<"===================="<<dataset_dir<<std::endl;
 
     // Read content of the .yaml dataset configuration file
     YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params.yaml");
-    string img_dir = dataset_dir + "/" + dset_config["images_subfolder"].as<string>();
+    // string img_dir = dataset_dir + "/" + dset_config["images_subfolder"].as<string>();
+    string img_dir = dataset_dir;
+    std::cout<<"===================="<<dataset_dir<<std::endl;
     opts.images_dir = img_dir;
 
     // Setup camera and run node
