@@ -41,9 +41,9 @@ class FrameHandlerMono : public FrameHandlerBase
 public:
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-  struct Options
+  struct Options// 选择（调动）
   {
-    bool has_pt;  //!< use point features in the pipeline
+    bool has_pt;  //!< use point features in the pipeline  点特征
     bool has_ls;  //!< use line segment features in the pipeline
     Options() :
       has_pt(true),
@@ -59,7 +59,7 @@ public:
   FrameHandlerMono(vk::AbstractCamera* cam, const Options& opts);
   virtual ~FrameHandlerMono();
 
-  /// Auxiliar functions
+  /// Auxiliar functions // 辅助函数?
   cv::Mat get_debug_image()
   {
     return debug_img;

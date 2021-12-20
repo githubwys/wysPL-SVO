@@ -55,7 +55,7 @@
 
 using namespace std;
 
-// 首先定义了 svo_options的数据结构，里面包含的是程序的运行参数
+// 首先定义了 svo_options的数据结构，里面包含的是程序的运行参数(一堆参数选项)
 struct svo_options {
     int seq_offset;
     int seq_step;
@@ -316,9 +316,9 @@ int BenchmarkNode::runFromFolder(svo_options opts)
     return 0;
 }
 
-int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts)
+int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts) // 主要程序
 {
-
+    std::cout<<"=========test1==========="<<std::endl;
     // grab options
     int seq_offset     = opts.seq_offset;
     int seq_step       = opts.seq_step;
@@ -334,6 +334,7 @@ int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts)
 
     // Read content of the .yaml dataset configuration file //读参数文件
     YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params.yaml");
+    // YAML::Node dset_config = YAML::LoadFile("/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam0/dataset_params.yaml");
 
     // get a sorted list of files in the img directory //读img
     boost::filesystem::path img_dir_path(images_dir.c_str());
@@ -392,7 +393,7 @@ int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts)
     T_c_w = Matrix<double,4,4>::Identity();
     scene.initializeScene(T_f_w);
 
-    // run SVO (pose estimation)
+    // run SVO (pose estimation)//运行svo，位姿估计
     std::list<FramePtr> frames;
     int frame_counter = 1;
     std::ofstream ofs_traj(traj_out.c_str());
@@ -719,7 +720,7 @@ const cv::String keys =
 
 int main(int argc, char** argv)
 {
-    std::cout<<"==========test=========="<<std::endl;
+    std::cout<<"==========test_start=========="<<std::endl;
     cv::CommandLineParser parser(argc, argv, keys);
     parser.about("SVO test: run_pipeline");
     if (parser.has("help"))
@@ -766,28 +767,30 @@ int main(int argc, char** argv)
     }
     // std::string dataset_dir( std::getenv("DATASETS_DIR") + dataset_name );
     // std::string dataset_dir("/home/wys/slam/data/EuRoC/MH_01_easy"+ dataset_name );
-    std::string dataset_dir="/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam0/data";
+    std::string dataset_dir="/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam0";
     opts.dataset_dir = dataset_dir;
-    std::cout<<"===================="<<dataset_dir<<std::endl;
+    std::cout<<"==========“dataset_dir”=========="<<dataset_dir<<std::endl;
 
     // Read content of the .yaml dataset configuration file
     // YAML 是 "YAML Ain't a Markup Language"（YAML 不是一种标记语言）的递归缩写。
     // 在开发的这种语言时，YAML 的意思其实是："Yet Another Markup Language"（仍是一种标记语言）
     YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params.yaml");
+    // YAML::Node dset_config = YAML::LoadFile("/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam0/dataset_params.yaml");
     // string img_dir = dataset_dir + "/" + dset_config["images_subfolder"].as<string>();
-    string img_dir = dataset_dir;
-    std::cout<<"===================="<<dataset_dir<<std::endl;
+    string img_dir = dataset_dir+"/data";
+    std::cout<<"==========“img_dir”==========="<<img_dir<<std::endl;
     opts.images_dir = img_dir;
 
     // Setup camera and run node
     YAML::Node cam_config = dset_config["cam0"];
     string camera_model = cam_config["cam_model"].as<string>();
-    if( camera_model == "Pinhole" )
+    // std::cout<<"===================="<<dset_config<<std::endl;
+    if( camera_model == "Pinhole" )//针孔相机模型
     {
         // setup cameras
         vk::PinholeCamera* cam_pin;
         vk::PinholeCamera* cam_pin_und;
-        cam_pin = new vk::PinholeCamera(
+        cam_pin = new vk::PinholeCamera(//有畸变模型
             cam_config["cam_width"].as<double>(),
             cam_config["cam_height"].as<double>(),
             fabs(cam_config["cam_fx"].as<double>()),
@@ -798,7 +801,7 @@ int main(int argc, char** argv)
             cam_config["cam_d1"].as<double>(),
             cam_config["cam_d2"].as<double>(),
             cam_config["cam_d3"].as<double>()  );
-        cam_pin_und = new vk::PinholeCamera(
+        cam_pin_und = new vk::PinholeCamera(//无畸变模型
             cam_config["cam_width"].as<double>(),
             cam_config["cam_height"].as<double>(),
             fabs(cam_config["cam_fx"].as<double>()),
@@ -806,12 +809,12 @@ int main(int argc, char** argv)
             cam_config["cam_cx"].as<double>(),
             cam_config["cam_cy"].as<double>() );
         // Set options for FrameHandlerMono
-        plsvo::FrameHandlerMono::Options handler_opts(opts.has_points,opts.has_lines);
-        plsvo::BenchmarkNode benchmark(cam_pin_und);
+        plsvo::FrameHandlerMono::Options handler_opts(opts.has_points,opts.has_lines);//处理器，处理点线// 选择调动点和线
+        plsvo::BenchmarkNode benchmark(cam_pin_und);//基准模型
         // run pipeline
         benchmark.runFromFolder(cam_pin,opts);
     }
-    else if( camera_model == "ATAN" || camera_model == "Atan" )
+    else if( camera_model == "ATAN" || camera_model == "Atan" )//？？？什么相机模型
     {
         // setup cameras
         vk::ATANCamera* cam_atan;
