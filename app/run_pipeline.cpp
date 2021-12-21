@@ -346,30 +346,42 @@ int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts) // �
 
     // get all files in the img directory
     size_t max_len = 0;
+    //size_t 类型定义在cstddef头文件中，该文件是C标准库的头文件stddef.h的C++版。
+    //它是一个与机器相关的unsigned类型，其大小足以保证存储内存中对象的大小。
+    //在C++中，设计size_t 就是为了适应多个平台的
     std::list<std::string> imgs;
     boost::filesystem::directory_iterator end_itr; // default construction yields past-the-end
-    for (boost::filesystem::directory_iterator file(img_dir_path); file != end_itr; ++file)
+    for (boost::filesystem::directory_iterator file(img_dir_path); file != end_itr; ++file)//文件迭代器
     {
         boost::filesystem::path filename_path = file->path().filename();
         if (boost::filesystem::is_regular_file(file->status()) &&
                 (filename_path.extension() == ".png"  ||
                  filename_path.extension() == ".jpg"  ||
                  filename_path.extension() == ".jpeg" ||
-                 filename_path.extension() == ".tiff") )
+                 filename_path.extension() == ".tiff") )//img的格式检测
         {
             std::string filename(filename_path.string());
-            imgs.push_back(filename);
-            max_len = max(max_len, filename.length());
+            imgs.push_back(filename);//读取img
+            max_len = max(max_len, filename.length());//文件名长度？
+            //printf("%d|%d|%s\n",max_len,filename.length(),filename.c_str());
         }
     }
 
     // sort them by filename; add leading zeros to make filename-lengths equal if needed
     // 按文件名排序; 如果需要，添加前导零以使文件名长度相等
-    std::map<std::string, std::string> sorted_imgs;
+    std::map<std::string, std::string> sorted_imgs;//容器map
     int n_imgs = 0;
-    for (std::list<std::string>::iterator img = imgs.begin(); img != imgs.end(); ++img)
+    for (std::list<std::string>::iterator img = imgs.begin(); img != imgs.end(); ++img)//iterator迭代器 map双向迭代器
     {
-        sorted_imgs[std::string(max_len - img->length(), '0') + (*img)] = *img;
+        //string str=std::string(max_len - img->length(), '0');
+        //std::cout<<str<<std::endl;
+        // if(max_len - img->length()!=0){
+        //     string str=std::string(max_len - img->length(), '0');
+        //     std::cout<<str<<std::endl;
+        // }
+        //printf("%d|%d|%s\n",max_len,img->length(),str.c_str());
+        sorted_imgs[std::string(max_len - img->length(), '0') + (*img)] = *img;//list容器的迭代器指向的元素*
+        // std::string(max_len - img->length(), '0') 在名字不一样长的img前面加0，补齐img长度一样长
         n_imgs++;
     }
 
@@ -778,7 +790,7 @@ int main(int argc, char** argv)
     // YAML::Node dset_config = YAML::LoadFile("/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam0/dataset_params.yaml");
     // string img_dir = dataset_dir + "/" + dset_config["images_subfolder"].as<string>();
     string img_dir = dataset_dir+"/data";
-    std::cout<<"==========“img_dir”==========="<<img_dir<<std::endl;
+    std::cout<<"==========“img_dir”=========="<<img_dir<<std::endl;
     opts.images_dir = img_dir;
 
     // Setup camera and run node
