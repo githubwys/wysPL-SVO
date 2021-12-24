@@ -66,8 +66,8 @@ public:
     void initialize3DSceneImg(Matrix<double,4,4> x_0);
     void initialize3DSceneGT(Matrix<double,4,4> x_0);
 
-    void initializeScene(Matrix<double,4,4> x_0);
-    void initializeScene(Matrix<double,4,4> x_0, Matrix<double,4,4> x_0gt);
+    void initializeScene(Matrix<double,4,4> x_0);//就这一种
+    void initializeScene(Matrix<double,4,4> x_0, Matrix<double,4,4> x_0gt);//没有具体定义
 
     bool updateScene();
 

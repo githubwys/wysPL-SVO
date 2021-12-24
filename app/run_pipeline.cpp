@@ -380,59 +380,72 @@ int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts) // �
         //     std::cout<<str<<std::endl;
         // }
         //printf("%d|%d|%s\n",max_len,img->length(),str.c_str());
-        sorted_imgs[std::string(max_len - img->length(), '0') + (*img)] = *img;//list容器的迭代器指向的元素*
+        sorted_imgs[std::string(max_len - img->length(), '0') + (*img)] = *img;//list容器imgs的迭代器指向的元素*
         // std::string(max_len - img->length(), '0') 在名字不一样长的img前面加0，补齐img长度一样长
+        // std::cout<<*img<<std::endl;
         n_imgs++;
     }
+    //用map(str,str) sorted_imgs存储了所有的图像
 
-    // add offset / step / length
+    // add offset / step / length //按照步长取一部分img
     int seq_end = n_imgs;
     if( seq_length != 0 )
         int seq_end = std::min( seq_length*seq_step+seq_offset, n_imgs );
     std::map<std::string, std::string> sorted_imgs_aux = sorted_imgs;//根据初始偏移，步长和数据长度把图像数据存储到
     sorted_imgs.clear();
     int k = 0;
-    for (auto img = sorted_imgs_aux.begin(); img != sorted_imgs_aux.end(); std::advance(img,seq_step) )
+    for (auto img = sorted_imgs_aux.begin(); img != sorted_imgs_aux.end(); std::advance(img,seq_step) )//迭代器函数advance,移动迭代器指向的元素
     {
-        if( k >= seq_offset && k <= seq_end )
+        if( k >= seq_offset && k <= seq_end )//设定选取的img的范围
             sorted_imgs.insert( *img );
         k++;
     }
 
     // create scene//场景初始化         //运行SVO进行姿态估计
-    sceneRepresentation scene("../app/scene_config.ini");// 读入mrpt显示配置
-    Matrix<double,4,4> T_c_w, T_f_w = Matrix<double,4,4>::Identity(), T_f_w_prev = Matrix<double,4,4>::Identity(), T_inc;
-    T_c_w = Matrix<double,4,4>::Identity();
+    // 读入mrpt显示配置
+    sceneRepresentation scene("../app/scene_config.ini");
+    //Identity()，用以初始一个单位阵，但这个函数只针对Matrix类型，不针对Array类型
+    Matrix<double,4,4> T_c_w = Matrix<double,4,4>::Identity();
+    Matrix<double,4,4> T_f_w = Matrix<double,4,4>::Identity();
+    Matrix<double,4,4> T_f_w_prev = Matrix<double,4,4>::Identity();
+    Matrix<double,4,4> T_inc;
     scene.initializeScene(T_f_w);
 
     // run SVO (pose estimation)//运行svo，位姿估计
     std::list<FramePtr> frames;
     int frame_counter = 1;
-    std::ofstream ofs_traj(traj_out.c_str());
+    std::ofstream ofs_traj(traj_out.c_str());//输出路径的txt文件
     for (std::map<std::string, std::string>::iterator it = sorted_imgs.begin(); it != sorted_imgs.end(); ++it )
     {
         // load image
+        // // //test
+        // // std::cout<<"=========="<<it->first.c_str()<<std::endl;
+        // // std::cout<<"=========="<<it->second.c_str()<<std::endl;
+        // // std::cout<<"=========="<<img_dir_path<<std::endl;
+        // // std::cout<<"=========="<< img_dir_path / boost::filesystem::path(it->second.c_str())<<std::endl;
+        // // boost::filesystem::path 创建路径path //boost c++拓展标准库
+        //img_path为每张图像的绝对路径；img_dir_path图像的文件夹；it->second.c_str()为图像名
         boost::filesystem::path img_path = img_dir_path / boost::filesystem::path(it->second.c_str());
         if (frame_counter == 1)
             std::cout << "reading image " << img_path.string() << std::endl;
         cv::Mat img(cv::imread(img_path.string(), CV_8UC1));//进入循环读入图像进行处理
-        // IMPORTANT: The image must be flipped if focal length is negative
-        // since the optimization code assumes that both f_x and f_y are positive
+        // IMPORTANT: The image must be flipped if focal length is negative //焦距为负数，图像需要翻转
+        // since the optimization code assumes that both f_x and f_y are positive //优化代码假设焦距为正数
         {
-          // get camera config
+          // get camera config//获得相机参数
           YAML::Node cam_config = dset_config["cam0"];
-          // check f_y sign
-          if(cam_config["cam_fy"].as<double>()<0)
-            cv::flip(img, img, 0); // Vertical flipping (around x axis, changes y coordinate)
+          // check f_y sign 
+          if(cam_config["cam_fy"].as<double>()<0)//.as<double>()：yaml把参数作为<double>读出来
+            cv::flip(img, img, 0); // Vertical flipping (around x axis, changes y coordinate)//焦距为负数，图像需要翻转
         }
-        assert(!img.empty());
+        assert(!img.empty());//保证img不空
 
         // undistort image
         cv::Mat img_rec;
-        cam_->undistortImage(img,img_rec);//图像去畸变
+        cam_->undistortImage(img,img_rec);//图像去畸变     //vikit库
 
         // process frame    //开始对图像进行处理
-        vo_->addImage(img_rec, frame_counter / (double)fps_);
+        vo_->addImage(img_rec, frame_counter / (double)fps_);// 实现在frame_handler_mono.cpp 自己写的
 
         // display tracking quality
         if (vo_->lastFrame() != NULL) {
