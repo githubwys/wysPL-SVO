@@ -112,7 +112,7 @@ namespace plsvo
   #define SVO_LOG2(v1, v2)
   #define SVO_LOG3(v1, v2, v3)
   #define SVO_LOG4(v1, v2, v3, v4)
-  #define SVO_START_TIMER(name)
+  #define SVO_START_TIMER(name)   //定义有什么用？
   #define SVO_STOP_TIMER(name)
 #endif
 

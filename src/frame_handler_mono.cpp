@@ -159,7 +159,9 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp)
   // The Frame constructor initializes new_frame_
   // and creates the image pyramid (also stored in Frame as img_pyr_)
   // Frame类初始化为new_frame_，创建图像金字塔（也作为img_pyr_存储在Frame中）
-  new_frame_.reset(new Frame(cam_, img.clone(), timestamp));
+  //shared_ptr 智能指针
+  //shared_ptr的reset( )函数的作用是将引用计数减1，停止对指针的共享，除非引用计数为0，否则不会发生删除操作。
+  new_frame_.reset(new Frame(cam_, img.clone(), timestamp));//?reset 
   SVO_STOP_TIMER("pyramid_creation");
 
   // process frame //处理图像帧 
