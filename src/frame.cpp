@@ -91,9 +91,12 @@ void Frame::setKeyPoints()
       if(key_pts_[i]->feat3D == NULL)
         key_pts_[i] = NULL;
 
+  //checkKeyPoints（）检查关键点？
+  //for_each(_InputIterator __first, _InputIterator __last, _Function __f)
   std::for_each(pt_fts_.begin(), pt_fts_.end(), [&](PointFeat* ftr){ if(ftr->feat3D != NULL) checkKeyPoints(ftr); });
 }
 
+//checkKeyPoints（）检查关键点？
 void Frame::checkKeyPoints(PointFeat* ftr)
 {
   const int cu = cam_->width()/2;

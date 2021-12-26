@@ -52,19 +52,19 @@ class DepthFilter;
 class FrameHandlerBase : boost::noncopyable
 {
 public:
-  enum Stage {
+  enum Stage {//enum 枚举类型定义{常量表}
     STAGE_PAUSED,
     STAGE_FIRST_FRAME,
     STAGE_SECOND_FRAME,
     STAGE_DEFAULT_FRAME,
     STAGE_RELOCALIZING
   };
-  enum TrackingQuality {
+  enum TrackingQuality {//enum 枚举类型定义{常量表}
     TRACKING_INSUFFICIENT,
     TRACKING_BAD,
     TRACKING_GOOD
   };
-  enum UpdateResult {
+  enum UpdateResult {//enum 枚举类型定义{常量表}
     RESULT_NO_KEYFRAME,
     RESULT_IS_KEYFRAME,
     RESULT_FAILURE

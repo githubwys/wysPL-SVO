@@ -161,6 +161,7 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp)
   // Frame类初始化为new_frame_，创建图像金字塔（也作为img_pyr_存储在Frame中）
   //shared_ptr 智能指针
   //shared_ptr的reset( )函数的作用是将引用计数减1，停止对指针的共享，除非引用计数为0，否则不会发生删除操作。
+  //new_frame_，智能指针
   new_frame_.reset(new Frame(cam_, img.clone(), timestamp));//?reset 
   SVO_STOP_TIMER("pyramid_creation");
 
@@ -229,11 +230,12 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp, cv::
 FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
 {
   // set first frame to identity transformation
-  new_frame_->T_f_w_ = SE3(Matrix3d::Identity(), Vector3d::Zero());
+  new_frame_->T_f_w_ = SE3(Matrix3d::Identity(), Vector3d::Zero());//new_frame_智能指针指向李代数SE3，表示初始帧的位姿
   // for now the initialization is done with points and endpoints only (consider use lines)
   if(klt_homography_init_.addFirstFrame(new_frame_) == initialization::FAILURE)
     return RESULT_NO_KEYFRAME;
-  new_frame_->setKeyframe();
+  new_frame_->setKeyframe();//单应矩阵初始化，添加第一个关键帧
+  //addKeyframe:list< FramePtr > keyframes_;keyframes_.push_back(<FramePtr> new_keyframe);存指向关键帧的指针的list
   map_.addKeyframe(new_frame_);
   stage_ = STAGE_SECOND_FRAME;
   SVO_INFO_STREAM("Init: Selected first frame.");
@@ -243,13 +245,13 @@ FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
 // 循环过来，对第二帧进行跟踪
 FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
 {
-  initialization::InitResult res = klt_homography_init_.addSecondFrame(new_frame_);
+  initialization::InitResult res = klt_homography_init_.addSecondFrame(new_frame_);//单应矩阵初始化，添加第二个关键帧
   if(res == initialization::FAILURE)
     return RESULT_FAILURE;
   else if(res == initialization::NO_KEYFRAME)
     return RESULT_NO_KEYFRAME;
 
-  // two-frame bundle adjustment
+  // two-frame bundle adjustment  //两帧的光束法？
 #ifdef USE_BUNDLE_ADJUSTMENT
   ba::twoViewBA(new_frame_.get(), map_.lastKeyframe().get(), Config::lobaThresh(), &map_);
 #endif
