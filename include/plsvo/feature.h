@@ -60,7 +60,7 @@ struct PointFeat : public Feature
     EDGELET,
   };
 
-  FeatureType type;     //!< Type can be corner or edgelet.
+  FeatureType type;     //!< Type can be corner or edgelet.//角点或者边缘
   Vector2d grad;        //!< Dominant gradient direction for edglets, normalized.
 
   Point* feat3D;        //!< Pointer to 3D point which corresponds to the point feature.
@@ -104,6 +104,8 @@ struct LineFeat : public Feature
 };
 
 /// Patch class for a image region associated to a certain feature
+// patch类用于，表示关联特征的图像区域
+//在C++中， 结构 （structure）与类几乎是完全一样的类型，（ 结构是一种数据类型 ）差别仅仅在于缺省情况下结构的成员为公有的。
 struct Patch
 {
   // patch geometry
@@ -128,7 +130,7 @@ struct Patch
 
   // level and scale remain as sth external
   Patch() {} // empty constructor
-  Patch( int _size, const cv::Mat& _img );
+  Patch( int _size, const cv::Mat& _img );//结构的构造函数
 
   /// Set exact and floor position of the patch reference (center)
   void setPosition( const Vector2d& px );

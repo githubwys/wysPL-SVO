@@ -130,10 +130,11 @@ void DepthFilter::addFrame(FramePtr frame)
     updateSeeds(frame);
 }
 
-void DepthFilter::addKeyframe(FramePtr frame, double depth_mean, double depth_min)
+void DepthFilter::addKeyframe(FramePtr frame, double depth_mean, double depth_min)//深度滤波器添加关键帧
 {
   new_keyframe_min_depth_  = depth_min;
   new_keyframe_mean_depth_ = depth_mean;
+  // 已有并行线程处理深度滤波器，使用该线程
   // if there exists an parallel thread for Depth-Filter just setup the control variables to jump into it
   if(thread_ != NULL)
   {
@@ -142,7 +143,8 @@ void DepthFilter::addKeyframe(FramePtr frame, double depth_mean, double depth_mi
     seeds_updating_halt_ = true;
     frame_queue_cond_.notify_one();
   }
-  // if there is no independent thread for Depth-Filter call the initialization of seeds explicitly (same effect)
+  // 没有独立线程，初始化新线程
+  // if there is no independent thread for Depth-Filter call the initialization of seeds explicitly明确的 (same effect)
   else
     initializeSeeds(frame);
 

@@ -51,7 +51,7 @@ SparseImgAlign::SparseImgAlign(
   eps_         = 0.000001;
 }
 
-size_t SparseImgAlign::run(FramePtr ref_frame, FramePtr cur_frame)
+size_t SparseImgAlign::run(FramePtr ref_frame, FramePtr cur_frame)//
 {
   reset();
 
@@ -66,6 +66,7 @@ size_t SparseImgAlign::run(FramePtr ref_frame, FramePtr cur_frame)
 
   // The maximum number of segment samples (without overlapping) is proportional to
   // the accumulated length of the segment features
+  // 分段样本的最大数量（无重叠）与分段特征的累积长度成正比
   float total_length = 0;
   std::for_each(ref_frame->seg_fts_.begin(), ref_frame->seg_fts_.end(), [&](plsvo::Feature* i){
     LineFeat* seg = static_cast<LineFeat*>(i);

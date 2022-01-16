@@ -105,7 +105,7 @@ void Frame::checkKeyPoints(PointFeat* ftr)
   // center pixel
   if(key_pts_[0] == NULL)
     key_pts_[0] = ftr;
-  else if(std::max(std::fabs(ftr->px[0]-cu), std::fabs(ftr->px[1]-cv))
+  else if(std::max(std::fabs(ftr->px[0]-cu), std::fabs(ftr->px[1]-cv))//fabs（）对float，double求绝对值;abs（）函数主要是对int求绝对值
         < std::max(std::fabs(key_pts_[0]->px[0]-cu), std::fabs(key_pts_[0]->px[1]-cv)))
     key_pts_[0] = ftr;
 

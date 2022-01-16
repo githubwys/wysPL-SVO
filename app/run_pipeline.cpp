@@ -61,7 +61,7 @@ struct svo_options {
     int seq_step;
     int seq_length;
     bool has_points;
-    bool has_lines ;
+    bool has_lines;
     bool is_tum;
     string dataset_dir;
     string images_dir;
@@ -448,6 +448,7 @@ int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts) // �
         vo_->addImage(img_rec, frame_counter / (double)fps_);// 实现在frame_handler_mono.cpp 自己写的
 
         // display tracking quality
+        // 显示跟踪质量
         if (vo_->lastFrame() != NULL) {
             std::cout << "Frame-Id: "       << vo_->lastFrame()->id_ << " \t"
                       << "#PointFeatures: " << vo_->lastNumPtObservations() << " \t"
@@ -792,17 +793,24 @@ int main(int argc, char** argv)
     }
     // std::string dataset_dir( std::getenv("DATASETS_DIR") + dataset_name );
     // std::string dataset_dir("/home/wys/slam/data/EuRoC/MH_01_easy"+ dataset_name );
+    // 数据路径设置
+    //std::string dataset_dir="/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam0";
     std::string dataset_dir="/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam0";
+    string img_dir = "/home/wys/slam/data/celling/dingshidata/2021-10-04-08-52-10/camera/color/image_raw";
+    YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params.yaml");
+
     opts.dataset_dir = dataset_dir;
     std::cout<<"==========“dataset_dir”=========="<<dataset_dir<<std::endl;
 
-    // Read content of the .yaml dataset configuration file
-    // YAML 是 "YAML Ain't a Markup Language"（YAML 不是一种标记语言）的递归缩写。
-    // 在开发的这种语言时，YAML 的意思其实是："Yet Another Markup Language"（仍是一种标记语言）
-    YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params.yaml");
-    // YAML::Node dset_config = YAML::LoadFile("/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam0/dataset_params.yaml");
-    // string img_dir = dataset_dir + "/" + dset_config["images_subfolder"].as<string>();
-    string img_dir = dataset_dir+"/data";
+    // // Read content of the .yaml dataset configuration file
+    // // YAML 是 "YAML Ain't a Markup Language"（YAML 不是一种标记语言）的递归缩写。
+    // // 在开发的这种语言时，YAML 的意思其实是："Yet Another Markup Language"（仍是一种标记语言）
+    // // 参数读取param
+    //YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params.yaml");
+    // // YAML::Node dset_config = YAML::LoadFile("/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam0/dataset_params.yaml");
+    // // string img_dir = dataset_dir + "/" + dset_config["images_subfolder"].as<string>();
+    // // img数据读取
+    //string img_dir = dataset_dir+"/data";
     std::cout<<"==========“img_dir”=========="<<img_dir<<std::endl;
     opts.images_dir = img_dir;
 

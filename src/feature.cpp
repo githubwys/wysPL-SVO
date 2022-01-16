@@ -172,9 +172,10 @@ size_t LineFeat::setupSampling(size_t patch_size, Vector2d &dif)
   // If length is very low the segment approaches a point and the minimum 1 sample is taken (the central point)
 }
 
-Patch::Patch(int _size, const cv::Mat &_img)
+Patch::Patch(int _size, const cv::Mat &_img)//Patch //结构的构造函数
 {
   // assert the size is an even number for symmetry in the window
+  // 保证窗口中的size是对称的偶数
   assert( _size%2 == 0 );
   size = _size;
   halfsize = size/2;
@@ -182,8 +183,11 @@ Patch::Patch(int _size, const cv::Mat &_img)
   border = halfsize+1;
 
   // from image get stride
+  // stride n.步；步伐  v.进展；进步
   full_img = _img;
-  stride = _img.step[0]; // take as stride between rows the corresponding Mat property
+  // take as stride between rows the corresponding Mat property
+  // 以行之间相应的Mat属性作为步幅
+  stride = _img.step[0]; 
 }
 
 void Patch::setPosition(const Vector2d &px)

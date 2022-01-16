@@ -79,7 +79,7 @@ void Reprojector::initializeGrid(vk::AbstractCamera* cam)
   }
 }
 
-void Reprojector::resetReprojGrid()
+void Reprojector::resetReprojGrid()////重置重投影格网
 {
   n_matches_    = 0;
   n_trials_     = 0;
@@ -132,26 +132,30 @@ void Reprojector::setMapCandidates(FramePtr frame, MapCandidatesT &map_candidate
   } // end-while-loop
 }
 
-void Reprojector::reprojectMap(
+void Reprojector::reprojectMap(//地图重投影
     FramePtr frame,
     std::vector< std::pair<FramePtr,std::size_t> >& overlap_kfs)
 {
-  resetReprojGrid();
+  resetReprojGrid();//重置重投影格网
 
   // Reset candidate lines: TODO in the future this could be fused into resetGrid()
+  // 重置候选线（）：防止与resetGrid()搞混
   n_ls_matches_ = 0;
   //lines_.clear();
 
   // Identify those Keyframes which share a common field of view.
+  // 确定这些关键帧，哪些共享一个公共的视野
   SVO_START_TIMER("reproject_kfs");
   list< pair<FramePtr,double> > close_kfs;
   map_.getCloseKeyframes(frame, close_kfs);
 
   // Sort KFs with overlap according to their closeness (2nd value of pairs in the list)
+  // 根据KF的接近程度对重叠的KF进行排序（列表中对的第二个值）
   close_kfs.sort(boost::bind(&std::pair<FramePtr, double>::second, _1) <
                  boost::bind(&std::pair<FramePtr, double>::second, _2));
 
   // Reproject all map features of the closest N kfs with overlap.
+  // 以重叠的方式，重投影地图的所有N个最邻近的kfs特征
   size_t n_kfs = 0;
   overlap_kfs.reserve(options_.max_n_kfs);
   for(auto it_frame=close_kfs.begin(), ite_frame=close_kfs.end();

@@ -92,7 +92,7 @@ public:
   /// Initialization: Minimum number of inliers after RANSAC.
   static size_t& initMinInliers() { return getInstance().init_min_inliers; }
 
-  /// Maximum level of the Lucas Kanade tracker.
+  /// Maximum level of the Lucas Kanade tracker.??
   static size_t& kltMaxLevel() { return getInstance().klt_max_level; }
 
   /// Minimum level of the Lucas Kanade tracker.

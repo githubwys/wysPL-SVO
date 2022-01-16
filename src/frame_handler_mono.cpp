@@ -234,7 +234,7 @@ FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
   // for now the initialization is done with points and endpoints only (consider use lines)
   if(klt_homography_init_.addFirstFrame(new_frame_) == initialization::FAILURE)
     return RESULT_NO_KEYFRAME;
-  new_frame_->setKeyframe();//单应矩阵初始化，添加第一个关键帧
+  new_frame_->setKeyframe();//单应矩阵初始化，添加第一个关键帧//添加了特征点？
   //addKeyframe:list< FramePtr > keyframes_;keyframes_.push_back(<FramePtr> new_keyframe);存指向关键帧的指针的list
   map_.addKeyframe(new_frame_);
   stage_ = STAGE_SECOND_FRAME;
@@ -256,15 +256,15 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processSecondFrame()
   ba::twoViewBA(new_frame_.get(), map_.lastKeyframe().get(), Config::lobaThresh(), &map_);
 #endif
 
-  new_frame_->setKeyframe();
+  new_frame_->setKeyframe();//单应矩阵初始化，添加第二个关键帧//添加了特征点？
   double depth_mean, depth_min;
-  frame_utils::getSceneDepth(*new_frame_, depth_mean, depth_min);
-  depth_filter_->addKeyframe(new_frame_, depth_mean, 0.5*depth_min);
+  frame_utils::getSceneDepth(*new_frame_, depth_mean, depth_min);//获得景深，由特征的均值获得景深
+  depth_filter_->addKeyframe(new_frame_, depth_mean, 0.5*depth_min);//深度滤波器添加关键帧 in depth_filter.cpp
 
   // add frame to map
-  map_.addKeyframe(new_frame_);
+  map_.addKeyframe(new_frame_);//地图添加关键帧
   stage_ = STAGE_DEFAULT_FRAME;
-  klt_homography_init_.reset();
+  klt_homography_init_.reset();//不再初始单应矩阵，reset清空智能指针
   SVO_INFO_STREAM("Init: Selected second frame, triangulated initial map.");
   return RESULT_IS_KEYFRAME;
 }
@@ -276,6 +276,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   new_frame_->T_f_w_ = last_frame_->T_f_w_;
 
   // sparse image align
+  //稀疏图像的排列 初始化计算T（k-1,k）
   SVO_START_TIMER("sparse_img_align");
   bool display = false;
   bool verbose = false;
@@ -287,6 +288,8 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
   SVO_DEBUG_STREAM("Img Align:\t Tracked = " << img_align_n_tracked);
 
   // show reference features
+  //显示参考特征
+  // FrameHandlerMono::public cv::Mat debug_img
   cv::cvtColor(last_frame_->img(), FrameHandlerMono::debug_img, cv::COLOR_GRAY2BGR);
   {
     // draw point features
@@ -301,6 +304,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
       }
     }
     // draw segment features
+    //绘制线段特征
     {
       auto fts = last_frame_->seg_fts_;
       std::for_each(fts.begin(), fts.end(), [&](plsvo::LineFeat* i){
@@ -312,7 +316,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
     //cv::waitKey(30);
   }
 
-  // map reprojection & feature alignment
+  // map reprojection & feature alignment // 地图重投影&特征对齐
   SVO_START_TIMER("reproject");
   reprojector_.reprojectMap(new_frame_, overlap_kfs_);
   SVO_STOP_TIMER("reproject");
@@ -352,6 +356,7 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
 
   // select keyframe
   core_kfs_.insert(new_frame_);
+  //根据跟踪特征的数量设置跟踪质量
   setTrackingQuality(sfba_n_edges_final_pt,sfba_n_edges_final_ls);
   if(tracking_quality_ == TRACKING_INSUFFICIENT)
   {

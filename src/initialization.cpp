@@ -147,10 +147,12 @@ void detectFeatures(
   }
 
   // now for all maximum corners, initialize a new seed
+  //现在，对于所有最大角点，初始化一个新种子
   px_vec.clear(); px_vec.reserve(new_features.size()+2*new_features_ls.size());
   f_vec.clear();  f_vec.reserve(new_features.size()+2*new_features_ls.size());
 
   // we know features here are really PointFeat but this should work with the parent Feature type
+  //我们知道这里的功能实际上是PointFeat，但这应该适用于父功能类型
   std::for_each(new_features.begin(), new_features.end(), [&](Feature* ftr){
     px_vec.push_back(cv::Point2f(ftr->px[0], ftr->px[1]));
     f_vec.push_back(ftr->f);
@@ -158,6 +160,7 @@ void detectFeatures(
   });
 
   // First try, introduce endpoints (line segments usually belongs to planes)
+  //首先尝试引入端点（线段通常属于平面）
   std::for_each(new_features_ls.begin(), new_features_ls.end(), [&](LineFeat* ftr){
     px_vec.push_back(cv::Point2f(ftr->spx[0], ftr->spx[1]));
     f_vec.push_back(ftr->sf);

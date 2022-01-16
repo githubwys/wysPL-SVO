@@ -101,6 +101,7 @@ protected:
   vector< pair<FramePtr,size_t> > overlap_kfs_; //!< All keyframes with overlapping field of view. the paired number specifies how many common mappoints are observed TODO: why vector!?
   //前两个关键帧使用单应矩阵，估计位姿
   initialization::KltHomographyInit klt_homography_init_; //!< Used to estimate pose of the first two keyframes by estimating a homography.
+  //深度估计算法在并行线程运行，并且初始化3D点
   DepthFilter* depth_filter_;                   //!< Depth estimation algorithm runs in a parallel thread and is used to initialize new 3D points.
   cv::Mat debug_img;
 

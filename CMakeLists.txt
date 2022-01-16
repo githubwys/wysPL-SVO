@@ -1,7 +1,8 @@
 ################################################################################
 # user build settings
 SET(TRACE TRUE)
-SET(HAVE_G2O FALSE)
+SET(HAVE_G2O TRUE)
+# SET(HAVE_G2O FALSE)
 SET(HAVE_MRPT TRUE)
 
 ################################################################################
