@@ -70,11 +70,14 @@ public:
     const double detection_threshold,
       list<FeatureT*>& fts) {}
   // Default method to instantiate AbstractDetector as a void detector that detects nothing
+  //将抽象检测器实例化为不检测任何内容的空检测器的默认方法
 
   /// Flag the grid cell as occupied
+  ///将网格单元标记为已占用
   virtual void setGridOccpuancy(const FeatureT& ft) {} // Default does nothing
 
   /// Set grid cells of existing features as occupied
+  ///将现有要素的栅格单元设置为已占用
   virtual void setExistingFeatures(const list<FeatureT*>& fts) {} // Default does nothing
 
   const int img_width_;
@@ -82,7 +85,9 @@ public:
 
 protected:
 
-  static const int border_ = 8; //!< no feature should be within 8px of border.
+  //!< no feature should be within 8px of border.
+  //!< 边界的8px范围内不应有任何特征。
+  static const int border_ = 8; 
   const int cell_size_;
   const int n_pyr_levels_;
   const int grid_n_cols_;

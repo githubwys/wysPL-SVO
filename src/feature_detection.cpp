@@ -129,17 +129,20 @@ LsdDetector::LsdDetector(
 {}
 
 void LsdDetector::detect(Frame* frame,
-    const ImgPyr& img_pyr,
+    const ImgPyr& img_pyr,    // 图像金字塔
     const double detection_threshold,
     list<LineFeat*> &fts)
 {
     // Parameters (TODO: include into config file or whatever and commit it to opencv)
+    //参数（TODO：包括在配置文件或其他文件中，并将其提交给opencv）
     vector<KeyLine> keyline, keylines, keylines_sort;
 
     // Define the LSD detector object
+    //定义LSD检测器对象
     Ptr<LSDDetectorC> lsd = LSDDetectorC::createLSDDetectorC();
 
     // TODO: grab from config file
+    //TODO:从配置文件抓取
     LSDDetectorC::LSDOptions opts;
     opts.refine       = LSD_REFINE_ADV;
     opts.scale        = 1.2;
@@ -151,13 +154,16 @@ void LsdDetector::detect(Frame* frame,
     opts.n_bins       = 1024;
 
     // Detect features on each pyramid level
+    //检测每个金字塔级别上的特征
     double detection_threshold_ = detection_threshold * double(img_height_*img_width_) / double(img_height_+img_width_);    // min length relative to size of image (change)
     for(int L=0; L<n_pyr_levels_; ++L)
     {
         // detect lines in pyramid level L
+        //检测金字塔级别L中的直线
         const double scale = double(1<<L);
-        lsd->detect( img_pyr[L], keyline, 1, 1, opts);
+        lsd->detect( img_pyr[L], keyline, 1, 1, opts);// 第三方库：LSD
         // sort lines according to their unscaled length
+        //根据未标度的长度对线进行排序
         sort( keyline.begin(), keyline.end(), compare_line_by_unscaled_length() );
         //detection_threshold_ = keyline[int(0.25*double(keyline.size()))].lineLength ;
         std::for_each( keyline.begin(), keyline.end(), [&](KeyLine kl){
@@ -182,7 +188,7 @@ void LsdDetector::detect(Frame* frame,
 }
 
 void LsdDetector::detect(Frame* frame,
-    const cv::Mat& rec_img,
+    const cv::Mat& rec_img,   // 图像
     const double detection_threshold,
     list<LineFeat*> &fts)
 {

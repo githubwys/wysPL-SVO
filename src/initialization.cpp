@@ -34,6 +34,8 @@
 #include <vikit/math_utils.h>
 #include <vikit/homography.h>
 
+#include <plsvo/check.h>
+
 namespace plsvo {
 namespace initialization {
 
@@ -41,15 +43,20 @@ namespace initialization {
 InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
 {
   reset();
-  detectFeatures(frame_ref, px_ref_, f_ref_);
-  if(px_ref_.size() < 100)
-  //if(px_ref_.size() < 80)
+  detectFeatures(frame_ref, px_ref_, f_ref_);//先检测FAST特征点和边缘特征
+  //if(px_ref_.size() < 100)
+  if(px_ref_.size() < 80)
   {
+    // 第一帧图像需要100+特征，否则在纹理更丰富的环境中继续尝试
     SVO_WARN_STREAM_THROTTLE(2.0, "First image has less than 80 features. Retry in more textured environment.");
     return FAILURE;
   }
+  cv::Mat temp = frame_ref->img();
+  cv::imwrite("first.png",temp);
+  temp.release();
   frame_ref_ = frame_ref;
   // initialize points in current frame (query or second frame) with points in ref frame
+  //px_cur_ 当前帧的2D点  // px_ref_ 参考帧（前一帧）的2D点
   px_cur_.insert(px_cur_.begin(), px_ref_.begin(), px_ref_.end());
   return SUCCESS;
 }
@@ -61,10 +68,12 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
   SVO_INFO_STREAM("Init: KLT tracked "<< disparities_.size() <<" features");
 
   // check the number of points tracked is high enough
+  //检查跟踪的点数是否足够高
   if(disparities_.size() < Config::initMinTracked())
     return FAILURE;
 
   // check the median disparity is high enough to compute homography robustly
+  //检查中位数视差是否足够高，以可靠地计算单应性
   double disparity = vk::getMedian(disparities_);
   SVO_INFO_STREAM("Init: KLT "<<disparity<<"px median disparity.");
   if(disparity < Config::initMinDisparity())
@@ -76,11 +85,16 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
       inliers_, xyz_in_cur_, T_cur_from_ref_);
   SVO_INFO_STREAM("Init: Homography RANSAC "<<inliers_.size()<<" inliers.");
 
-  if(inliers_.size() < Config::initMinInliers())
+  if(inliers_.size() < 20)
   {
     SVO_WARN_STREAM("Init WARNING: "<<Config::initMinInliers()<<" inliers minimum required.");
     return FAILURE;
   }
+  // if(inliers_.size() < Config::initMinInliers())
+  // {
+  //   SVO_WARN_STREAM("Init WARNING: "<<Config::initMinInliers()<<" inliers minimum required.");
+  //   return FAILURE;
+  // }
 
   // Rescale the map such that the mean scene depth is equal to the specified scale
   vector<double> depth_vec;
@@ -93,6 +107,7 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
       -frame_cur->T_f_w_.rotation_matrix()*(frame_ref_->pos() + scale*(frame_cur->pos() - frame_ref_->pos()));
 
   // For each inlier create 3D point and add feature in both frames
+  //对于每个内点，在两帧（第一帧和第二帧）中创建三维点并添加特征
   SE3 T_world_cur = frame_cur->T_f_w_.inverse();
   for(vector<int>::iterator it=inliers_.begin(); it!=inliers_.end(); ++it)
   {
@@ -183,7 +198,7 @@ void trackKlt(
 {
   const double klt_win_size = 30.0;
   const int klt_max_iter = 30;
-  const double klt_eps = 0.001;
+  const double klt_eps = 0.1;//0.001
   vector<uchar> status;
   vector<float> error;
   vector<float> min_eig_vec;
