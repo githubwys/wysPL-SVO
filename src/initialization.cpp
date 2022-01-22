@@ -51,8 +51,8 @@ InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
     SVO_WARN_STREAM_THROTTLE(2.0, "First image has less than 80 features. Retry in more textured environment.");
     return FAILURE;
   }
-  std::string imgName = "sd";
-  writeImg(frame_ref);
+  // std::string imgName = "sd";
+  // writeImg(frame_ref);
   // cv::Mat temp = frame_ref->img();
   // cv::imwrite("first.png",temp);
   // temp.release();
