@@ -54,21 +54,21 @@ class Frame : boost::noncopyable
 {
 public:
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    
-  static int                    frame_counter_;         //!< Counts the number of created frames. Used to set the unique id.
-  int                           id_;                    //!< Unique id of the frame.
-  double                        timestamp_;             //!< Timestamp of when the image was recorded.
-  vk::AbstractCamera*           cam_;                   //!< Camera model.
-  Sophus::SE3                   T_f_w_;                 //!< Transform (f)rame from (w)orld.
-  Matrix<double, 6, 6>          Cov_;                   //!< Covariance.
-  ImgPyr                        img_pyr_;               //!< Image Pyramid.
-  list<PointFeat*>              pt_fts_;                //!< List of point features in the image.
-  list<LineFeat*>               seg_fts_;               //!< List of segment features in the image.
-  vector<PointFeat*>            key_pts_;               //!< Five features and associated 3D points which are used to detect if two frames have overlapping field of view.
-  bool                          is_keyframe_;           //!< Was this frames selected as keyframe?
-  g2oFrameSE3*                  v_kf_;                  //!< Temporary pointer to the g2o node object of the keyframe.
-  int                           last_published_ts_;     //!< Timestamp of last publishing.
-  cv::Mat                       rec_img;
+  
+  static int               frame_counter_;      //!< 统计创建的帧数。用于设置唯一id Counts the number of created frames. Used to set the unique id.
+  int                      id_;                 //!< 框架的唯一id Unique id of the frame.
+  double                   timestamp_;          //!< 记录图像的时间戳  Timestamp of when the image was recorded.
+  vk::AbstractCamera*      cam_;                //!< 相机模型 Camera model.
+  Sophus::SE3              T_f_w_;              //!< 从世界坐标到帧的坐标转换 Transform (f)rame from (w)orld.
+  Matrix<double, 6, 6>     Cov_;                //!< 协方差 Covariance.
+  ImgPyr                   img_pyr_;            //!< 图像金字塔 Image Pyramid.
+  list<PointFeat*>         pt_fts_;             //!< 图像特征点列表 List of point features in the image.
+  list<LineFeat*>          seg_fts_;            //!< 图像线特征列表 List of segment features in the image.
+  vector<PointFeat*>       key_pts_;            //!< 五个特征和关联的3D点，用于检测两帧是否具有重叠的视野 Five features and associated 3D points which are used to detect if two frames have overlapping field of view.
+  bool                     is_keyframe_;        //!< 关键帧判断 Was this frames selected as keyframe?
+  g2oFrameSE3*             v_kf_;               //!< 指向关键帧的g2o节点对象的临时指针 Temporary pointer to the g2o node object of the keyframe.
+  int                      last_published_ts_;  //!< 上次发布的时间戳 Timestamp of last publishing.
+  cv::Mat                  rec_img;
 
   Frame(vk::AbstractCamera* cam, const cv::Mat& img, double timestamp);
   ~Frame();
@@ -104,6 +104,7 @@ public:
   bool isVisible(const Vector3d& xyz_w) const;
 
   /// Full resolution image stored in the frame.
+  ///帧中存储的全分辨率的图像
   inline const cv::Mat& img() const { return img_pyr_[0]; }
 
   /// Was this frame selected as keyframe?

@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/wys/slam/PL-SVO/wysPL-SVO/build
 include CMakeFiles/plsvo_includes.dir/progress.make
 
 CMakeFiles/plsvo_includes: ../include/plsvo/bundle_adjustment.h
+CMakeFiles/plsvo_includes: ../include/plsvo/check.h
 CMakeFiles/plsvo_includes: ../include/plsvo/config.h
 CMakeFiles/plsvo_includes: ../include/plsvo/depth_filter.h
 CMakeFiles/plsvo_includes: ../include/plsvo/feature.h

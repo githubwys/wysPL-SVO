@@ -112,8 +112,8 @@ LIST(APPEND SOURCEFILES
   src/feature_detection.cpp
   src/depth_filter.cpp
   src/config.cpp
-  src/sparse_img_align.cpp)
-  src/check.cpp
+  src/sparse_img_align.cpp
+  src/check.cpp)
 
 IF(HAVE_MRPT)
     LIST(APPEND SOURCEFILES src/sceneRepresentation.cpp)

@@ -232,6 +232,7 @@ FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()
   // set first frame to identity transformation
   new_frame_->T_f_w_ = SE3(Matrix3d::Identity(), Vector3d::Zero());//new_frame_智能指针指向李代数SE3，表示初始帧的位姿
   // for now the initialization is done with points and endpoints only (consider use lines)
+  //目前，初始化仅使用点和端点完成（请考虑使用线）
   if(klt_homography_init_.addFirstFrame(new_frame_) == initialization::FAILURE)
     return RESULT_NO_KEYFRAME;
   new_frame_->setKeyframe();//单应矩阵初始化，添加第一个关键帧//添加了特征点？

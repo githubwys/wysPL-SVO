@@ -47,13 +47,15 @@ InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
   //if(px_ref_.size() < 100)
   if(px_ref_.size() < 80)
   {
-    // 第一帧图像需要100+特征，否则在纹理更丰富的环境中继续尝试
+    // 第一帧图像需要80+特征，否则在纹理更丰富的环境中继续尝试
     SVO_WARN_STREAM_THROTTLE(2.0, "First image has less than 80 features. Retry in more textured environment.");
     return FAILURE;
   }
-  cv::Mat temp = frame_ref->img();
-  cv::imwrite("first.png",temp);
-  temp.release();
+  std::string imgName = "sd";
+  writeImg(frame_ref);
+  // cv::Mat temp = frame_ref->img();
+  // cv::imwrite("first.png",temp);
+  // temp.release();
   frame_ref_ = frame_ref;
   // initialize points in current frame (query or second frame) with points in ref frame
   //px_cur_ 当前帧的2D点  // px_ref_ 参考帧（前一帧）的2D点

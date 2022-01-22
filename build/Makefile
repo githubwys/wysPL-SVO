@@ -176,6 +176,33 @@ app/run_pipeline.cpp.s:
 	$(MAKE) -f CMakeFiles/run_pipeline.dir/build.make CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.s
 .PHONY : app/run_pipeline.cpp.s
 
+src/check.o: src/check.cpp.o
+
+.PHONY : src/check.o
+
+# target to build an object file
+src/check.cpp.o:
+	$(MAKE) -f CMakeFiles/plsvo.dir/build.make CMakeFiles/plsvo.dir/src/check.cpp.o
+.PHONY : src/check.cpp.o
+
+src/check.i: src/check.cpp.i
+
+.PHONY : src/check.i
+
+# target to preprocess a source file
+src/check.cpp.i:
+	$(MAKE) -f CMakeFiles/plsvo.dir/build.make CMakeFiles/plsvo.dir/src/check.cpp.i
+.PHONY : src/check.cpp.i
+
+src/check.s: src/check.cpp.s
+
+.PHONY : src/check.s
+
+# target to generate assembly for a file
+src/check.cpp.s:
+	$(MAKE) -f CMakeFiles/plsvo.dir/build.make CMakeFiles/plsvo.dir/src/check.cpp.s
+.PHONY : src/check.cpp.s
+
 src/config.o: src/config.cpp.o
 
 .PHONY : src/config.o
@@ -649,6 +676,9 @@ help:
 	@echo "... app/run_pipeline.o"
 	@echo "... app/run_pipeline.i"
 	@echo "... app/run_pipeline.s"
+	@echo "... src/check.o"
+	@echo "... src/check.i"
+	@echo "... src/check.s"
 	@echo "... src/config.o"
 	@echo "... src/config.i"
 	@echo "... src/config.s"

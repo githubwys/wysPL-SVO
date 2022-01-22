@@ -15,6 +15,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/plsvo.dir/src/depth_filter.cpp.o"
   "CMakeFiles/plsvo.dir/src/config.cpp.o"
   "CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.o"
+  "CMakeFiles/plsvo.dir/src/check.cpp.o"
   "CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.o"
   "../lib/libplsvo.pdb"
   "../lib/libplsvo.so"
