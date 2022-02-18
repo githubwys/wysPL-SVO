@@ -60,15 +60,15 @@ include CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.o: ../src/frame_handler_mono.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/frame_handler_mono.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/frame_handler_mono.cpp
 
 CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/frame_handler_mono.cpp > CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/frame_handler_mono.cpp > CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.i
 
 CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/frame_handler_mono.cpp -o CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/frame_handler_mono.cpp -o CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.s
 
 CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.o.requires:
 
@@ -84,15 +84,15 @@ CMakeFiles/plsvo.dir/src/frame_handler_mono.cpp.o.provides.build: CMakeFiles/pls
 CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.o: ../src/frame_handler_base.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/frame_handler_base.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/frame_handler_base.cpp
 
 CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/frame_handler_base.cpp > CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/frame_handler_base.cpp > CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.i
 
 CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/frame_handler_base.cpp -o CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/frame_handler_base.cpp -o CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.s
 
 CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.o.requires:
 
@@ -108,15 +108,15 @@ CMakeFiles/plsvo.dir/src/frame_handler_base.cpp.o.provides.build: CMakeFiles/pls
 CMakeFiles/plsvo.dir/src/frame.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/frame.cpp.o: ../src/frame.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/plsvo.dir/src/frame.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/frame.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/frame.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/frame.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/frame.cpp
 
 CMakeFiles/plsvo.dir/src/frame.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/frame.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/frame.cpp > CMakeFiles/plsvo.dir/src/frame.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/frame.cpp > CMakeFiles/plsvo.dir/src/frame.cpp.i
 
 CMakeFiles/plsvo.dir/src/frame.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/frame.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/frame.cpp -o CMakeFiles/plsvo.dir/src/frame.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/frame.cpp -o CMakeFiles/plsvo.dir/src/frame.cpp.s
 
 CMakeFiles/plsvo.dir/src/frame.cpp.o.requires:
 
@@ -132,15 +132,15 @@ CMakeFiles/plsvo.dir/src/frame.cpp.o.provides.build: CMakeFiles/plsvo.dir/src/fr
 CMakeFiles/plsvo.dir/src/feature.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/feature.cpp.o: ../src/feature.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/plsvo.dir/src/feature.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/feature.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/feature.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/feature.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/feature.cpp
 
 CMakeFiles/plsvo.dir/src/feature.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/feature.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/feature.cpp > CMakeFiles/plsvo.dir/src/feature.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/feature.cpp > CMakeFiles/plsvo.dir/src/feature.cpp.i
 
 CMakeFiles/plsvo.dir/src/feature.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/feature.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/feature.cpp -o CMakeFiles/plsvo.dir/src/feature.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/feature.cpp -o CMakeFiles/plsvo.dir/src/feature.cpp.s
 
 CMakeFiles/plsvo.dir/src/feature.cpp.o.requires:
 
@@ -156,15 +156,15 @@ CMakeFiles/plsvo.dir/src/feature.cpp.o.provides.build: CMakeFiles/plsvo.dir/src/
 CMakeFiles/plsvo.dir/src/feature3D.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/feature3D.cpp.o: ../src/feature3D.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/plsvo.dir/src/feature3D.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/feature3D.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/feature3D.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/feature3D.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/feature3D.cpp
 
 CMakeFiles/plsvo.dir/src/feature3D.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/feature3D.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/feature3D.cpp > CMakeFiles/plsvo.dir/src/feature3D.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/feature3D.cpp > CMakeFiles/plsvo.dir/src/feature3D.cpp.i
 
 CMakeFiles/plsvo.dir/src/feature3D.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/feature3D.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/feature3D.cpp -o CMakeFiles/plsvo.dir/src/feature3D.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/feature3D.cpp -o CMakeFiles/plsvo.dir/src/feature3D.cpp.s
 
 CMakeFiles/plsvo.dir/src/feature3D.cpp.o.requires:
 
@@ -180,15 +180,15 @@ CMakeFiles/plsvo.dir/src/feature3D.cpp.o.provides.build: CMakeFiles/plsvo.dir/sr
 CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.o: ../src/feature3D_impl.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/feature3D_impl.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/feature3D_impl.cpp
 
 CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/feature3D_impl.cpp > CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/feature3D_impl.cpp > CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.i
 
 CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/feature3D_impl.cpp -o CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/feature3D_impl.cpp -o CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.s
 
 CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.o.requires:
 
@@ -204,15 +204,15 @@ CMakeFiles/plsvo.dir/src/feature3D_impl.cpp.o.provides.build: CMakeFiles/plsvo.d
 CMakeFiles/plsvo.dir/src/map.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/map.cpp.o: ../src/map.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/plsvo.dir/src/map.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/map.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/map.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/map.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/map.cpp
 
 CMakeFiles/plsvo.dir/src/map.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/map.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/map.cpp > CMakeFiles/plsvo.dir/src/map.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/map.cpp > CMakeFiles/plsvo.dir/src/map.cpp.i
 
 CMakeFiles/plsvo.dir/src/map.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/map.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/map.cpp -o CMakeFiles/plsvo.dir/src/map.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/map.cpp -o CMakeFiles/plsvo.dir/src/map.cpp.s
 
 CMakeFiles/plsvo.dir/src/map.cpp.o.requires:
 
@@ -228,15 +228,15 @@ CMakeFiles/plsvo.dir/src/map.cpp.o.provides.build: CMakeFiles/plsvo.dir/src/map.
 CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.o: ../src/pose_optimizer.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/pose_optimizer.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/pose_optimizer.cpp
 
 CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/pose_optimizer.cpp > CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/pose_optimizer.cpp > CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.i
 
 CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/pose_optimizer.cpp -o CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/pose_optimizer.cpp -o CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.s
 
 CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.o.requires:
 
@@ -252,15 +252,15 @@ CMakeFiles/plsvo.dir/src/pose_optimizer.cpp.o.provides.build: CMakeFiles/plsvo.d
 CMakeFiles/plsvo.dir/src/initialization.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/initialization.cpp.o: ../src/initialization.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/plsvo.dir/src/initialization.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/initialization.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/initialization.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/initialization.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/initialization.cpp
 
 CMakeFiles/plsvo.dir/src/initialization.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/initialization.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/initialization.cpp > CMakeFiles/plsvo.dir/src/initialization.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/initialization.cpp > CMakeFiles/plsvo.dir/src/initialization.cpp.i
 
 CMakeFiles/plsvo.dir/src/initialization.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/initialization.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/initialization.cpp -o CMakeFiles/plsvo.dir/src/initialization.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/initialization.cpp -o CMakeFiles/plsvo.dir/src/initialization.cpp.s
 
 CMakeFiles/plsvo.dir/src/initialization.cpp.o.requires:
 
@@ -276,15 +276,15 @@ CMakeFiles/plsvo.dir/src/initialization.cpp.o.provides.build: CMakeFiles/plsvo.d
 CMakeFiles/plsvo.dir/src/matcher.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/matcher.cpp.o: ../src/matcher.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/plsvo.dir/src/matcher.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/matcher.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/matcher.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/matcher.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/matcher.cpp
 
 CMakeFiles/plsvo.dir/src/matcher.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/matcher.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/matcher.cpp > CMakeFiles/plsvo.dir/src/matcher.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/matcher.cpp > CMakeFiles/plsvo.dir/src/matcher.cpp.i
 
 CMakeFiles/plsvo.dir/src/matcher.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/matcher.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/matcher.cpp -o CMakeFiles/plsvo.dir/src/matcher.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/matcher.cpp -o CMakeFiles/plsvo.dir/src/matcher.cpp.s
 
 CMakeFiles/plsvo.dir/src/matcher.cpp.o.requires:
 
@@ -300,15 +300,15 @@ CMakeFiles/plsvo.dir/src/matcher.cpp.o.provides.build: CMakeFiles/plsvo.dir/src/
 CMakeFiles/plsvo.dir/src/reprojector.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/reprojector.cpp.o: ../src/reprojector.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/plsvo.dir/src/reprojector.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/reprojector.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/reprojector.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/reprojector.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/reprojector.cpp
 
 CMakeFiles/plsvo.dir/src/reprojector.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/reprojector.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/reprojector.cpp > CMakeFiles/plsvo.dir/src/reprojector.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/reprojector.cpp > CMakeFiles/plsvo.dir/src/reprojector.cpp.i
 
 CMakeFiles/plsvo.dir/src/reprojector.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/reprojector.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/reprojector.cpp -o CMakeFiles/plsvo.dir/src/reprojector.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/reprojector.cpp -o CMakeFiles/plsvo.dir/src/reprojector.cpp.s
 
 CMakeFiles/plsvo.dir/src/reprojector.cpp.o.requires:
 
@@ -324,15 +324,15 @@ CMakeFiles/plsvo.dir/src/reprojector.cpp.o.provides.build: CMakeFiles/plsvo.dir/
 CMakeFiles/plsvo.dir/src/feature_alignment.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/feature_alignment.cpp.o: ../src/feature_alignment.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/plsvo.dir/src/feature_alignment.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/feature_alignment.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/feature_alignment.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/feature_alignment.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/feature_alignment.cpp
 
 CMakeFiles/plsvo.dir/src/feature_alignment.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/feature_alignment.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/feature_alignment.cpp > CMakeFiles/plsvo.dir/src/feature_alignment.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/feature_alignment.cpp > CMakeFiles/plsvo.dir/src/feature_alignment.cpp.i
 
 CMakeFiles/plsvo.dir/src/feature_alignment.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/feature_alignment.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/feature_alignment.cpp -o CMakeFiles/plsvo.dir/src/feature_alignment.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/feature_alignment.cpp -o CMakeFiles/plsvo.dir/src/feature_alignment.cpp.s
 
 CMakeFiles/plsvo.dir/src/feature_alignment.cpp.o.requires:
 
@@ -348,15 +348,15 @@ CMakeFiles/plsvo.dir/src/feature_alignment.cpp.o.provides.build: CMakeFiles/plsv
 CMakeFiles/plsvo.dir/src/feature_detection.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/feature_detection.cpp.o: ../src/feature_detection.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/plsvo.dir/src/feature_detection.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/feature_detection.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/feature_detection.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/feature_detection.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/feature_detection.cpp
 
 CMakeFiles/plsvo.dir/src/feature_detection.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/feature_detection.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/feature_detection.cpp > CMakeFiles/plsvo.dir/src/feature_detection.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/feature_detection.cpp > CMakeFiles/plsvo.dir/src/feature_detection.cpp.i
 
 CMakeFiles/plsvo.dir/src/feature_detection.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/feature_detection.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/feature_detection.cpp -o CMakeFiles/plsvo.dir/src/feature_detection.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/feature_detection.cpp -o CMakeFiles/plsvo.dir/src/feature_detection.cpp.s
 
 CMakeFiles/plsvo.dir/src/feature_detection.cpp.o.requires:
 
@@ -372,15 +372,15 @@ CMakeFiles/plsvo.dir/src/feature_detection.cpp.o.provides.build: CMakeFiles/plsv
 CMakeFiles/plsvo.dir/src/depth_filter.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/depth_filter.cpp.o: ../src/depth_filter.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/plsvo.dir/src/depth_filter.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/depth_filter.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/depth_filter.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/depth_filter.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/depth_filter.cpp
 
 CMakeFiles/plsvo.dir/src/depth_filter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/depth_filter.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/depth_filter.cpp > CMakeFiles/plsvo.dir/src/depth_filter.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/depth_filter.cpp > CMakeFiles/plsvo.dir/src/depth_filter.cpp.i
 
 CMakeFiles/plsvo.dir/src/depth_filter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/depth_filter.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/depth_filter.cpp -o CMakeFiles/plsvo.dir/src/depth_filter.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/depth_filter.cpp -o CMakeFiles/plsvo.dir/src/depth_filter.cpp.s
 
 CMakeFiles/plsvo.dir/src/depth_filter.cpp.o.requires:
 
@@ -396,15 +396,15 @@ CMakeFiles/plsvo.dir/src/depth_filter.cpp.o.provides.build: CMakeFiles/plsvo.dir
 CMakeFiles/plsvo.dir/src/config.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/config.cpp.o: ../src/config.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/plsvo.dir/src/config.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/config.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/config.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/config.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/config.cpp
 
 CMakeFiles/plsvo.dir/src/config.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/config.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/config.cpp > CMakeFiles/plsvo.dir/src/config.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/config.cpp > CMakeFiles/plsvo.dir/src/config.cpp.i
 
 CMakeFiles/plsvo.dir/src/config.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/config.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/config.cpp -o CMakeFiles/plsvo.dir/src/config.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/config.cpp -o CMakeFiles/plsvo.dir/src/config.cpp.s
 
 CMakeFiles/plsvo.dir/src/config.cpp.o.requires:
 
@@ -420,15 +420,15 @@ CMakeFiles/plsvo.dir/src/config.cpp.o.provides.build: CMakeFiles/plsvo.dir/src/c
 CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.o: ../src/sparse_img_align.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/sparse_img_align.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/sparse_img_align.cpp
 
 CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/sparse_img_align.cpp > CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/sparse_img_align.cpp > CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.i
 
 CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/sparse_img_align.cpp -o CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/sparse_img_align.cpp -o CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.s
 
 CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.o.requires:
 
@@ -444,15 +444,15 @@ CMakeFiles/plsvo.dir/src/sparse_img_align.cpp.o.provides.build: CMakeFiles/plsvo
 CMakeFiles/plsvo.dir/src/check.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/check.cpp.o: ../src/check.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/plsvo.dir/src/check.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/check.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/check.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/check.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/check.cpp
 
 CMakeFiles/plsvo.dir/src/check.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/check.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/check.cpp > CMakeFiles/plsvo.dir/src/check.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/check.cpp > CMakeFiles/plsvo.dir/src/check.cpp.i
 
 CMakeFiles/plsvo.dir/src/check.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/check.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/check.cpp -o CMakeFiles/plsvo.dir/src/check.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/check.cpp -o CMakeFiles/plsvo.dir/src/check.cpp.s
 
 CMakeFiles/plsvo.dir/src/check.cpp.o.requires:
 
@@ -468,15 +468,15 @@ CMakeFiles/plsvo.dir/src/check.cpp.o.provides.build: CMakeFiles/plsvo.dir/src/ch
 CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.o: CMakeFiles/plsvo.dir/flags.make
 CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.o: ../src/sceneRepresentation.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/sceneRepresentation.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/src/sceneRepresentation.cpp
 
 CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/sceneRepresentation.cpp > CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/src/sceneRepresentation.cpp > CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.i
 
 CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/sceneRepresentation.cpp -o CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/src/sceneRepresentation.cpp -o CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.s
 
 CMakeFiles/plsvo.dir/src/sceneRepresentation.cpp.o.requires:
 

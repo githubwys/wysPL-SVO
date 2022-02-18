@@ -60,15 +60,15 @@ include CMakeFiles/run_pipeline.dir/flags.make
 CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.o: CMakeFiles/run_pipeline.dir/flags.make
 CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.o: ../app/run_pipeline.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wys/slam/PL-SVO/wysPL-SVO/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/app/run_pipeline.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.o -c /home/wys/slam/PL-SVO/wysPL-SVO/app/run_pipeline.cpp
 
 CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/app/run_pipeline.cpp > CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wys/slam/PL-SVO/wysPL-SVO/app/run_pipeline.cpp > CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.i
 
 CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/app/run_pipeline.cpp -o CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wys/slam/PL-SVO/wysPL-SVO/app/run_pipeline.cpp -o CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.s
 
 CMakeFiles/run_pipeline.dir/app/run_pipeline.cpp.o.requires:
 

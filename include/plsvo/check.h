@@ -5,10 +5,12 @@
 using namespace std;
 using namespace cv; 
 
-void writeImg(cv::Mat image_, string string_);
+// void writeImg(cv::Mat image_, string string_);
 
-void writeImg(FramePtr frame_)
+// void writeImg(FramePtr frame_)
 
-void writeImg(plsvo::Frame frame_, string string_);
+// void writeImg(plsvo::Frame frame_, string string_);
+
+
 
 

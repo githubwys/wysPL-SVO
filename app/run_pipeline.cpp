@@ -793,8 +793,15 @@ int main(int argc, char** argv)
     }
 
     std::string dataset_dir="/home/wys/slam/PL-SVO/wysPL-SVO/config/";
-    string img_dir = "/home/wys/slam/data/celling/dingshidata/2021-10-04-08-56-40/camera/color/image_raw";
+    //string img_dir = "/home/wys/slam/data/celling/dingshidata/2021-10-04-08-56-40/camera/color/image_raw";
+    string img_dir = "/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam1/data";
     //YAML::Node dset_config = YAML::LoadFile("/home/wys/slam/PL-SVO/wysPL-SVO/config/dataset_params.yaml");
+    ifstream imgfile;
+    imgfile.open("/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam1/data",ios::in);
+    getline(imgfile,dataset_dir,'\n');
+    
+
+
     YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params.yaml");
 
     opts.dataset_dir = dataset_dir;

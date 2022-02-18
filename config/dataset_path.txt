@@ -1,0 +1,1 @@
+/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam0/data
