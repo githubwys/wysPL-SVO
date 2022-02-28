@@ -55,6 +55,10 @@
 
 using namespace std;
 
+string files="";
+string calib="";
+string calib_path="";
+
 // 首先定义了 svo_options的数据结构，里面包含的是程序的运行参数(一堆参数选项)
 struct svo_options {
     int seq_offset;
@@ -333,7 +337,8 @@ int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts) // �
     int fps_           = 30;
 
     // Read content of the .yaml dataset configuration file //读参数文件
-    YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params.yaml");
+    // YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params.yaml");
+    YAML::Node dset_config = YAML::LoadFile(dataset_dir+calib);
     // YAML::Node dset_config = YAML::LoadFile("/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam0/dataset_params.yaml");
 
     // get a sorted list of files in the img directory //读img
@@ -737,12 +742,34 @@ const cv::String keys =
     "{hasls haslines        |true      | bool to employ or not line segments }"
     "{mapout                |<none>     | name of the pcd output file for the map }"
     "{trajout               |trajout.txt | name of the output file for the trajectory }"
+    "{files               |../config/dataset_path.txt | name of the input file for the hole pipline }"
+    "{calib_path          |../config | path of the calib file }"
+    "{calib               |/dataset_params.yaml | name of the calib file }"
     ;
 
 // Examples of use:
 // sin2_tex2_h1_v8_d            ./run_pipeline_comp sin2_tex2_h1_v8_d
 // ICL-NUIM                     ./run_pipeline_comp ICL-NUIM/lrkt0-retinex
 // ASL_Dataset                  ./run_pipeline_comp ASL_Dataset/MH_01_easy
+
+void parseArgument(char* arg)// 分析参数
+{
+	int option;
+	float foption;
+	char buf[1000];
+
+    if(1==sscanf(arg,"files=%d",&option))
+    {
+        if(option==1)
+        {
+            //files = true;
+            files = option;
+            printf("=====get files ,all image and calib files====== \n");
+        }
+        return;
+    }
+	// printf("could not parse argument \"%s\"!!!!\n", arg);
+}
 
 int main(int argc, char** argv)
 {
@@ -765,6 +792,10 @@ int main(int argc, char** argv)
     else
       map_output  = "map_out.pcd";
     traj_output = parser.get<std::string>("trajout");
+
+    files = parser.get<std::string>("files");
+    calib = parser.get<std::string>("calib");
+    calib_path = parser.get<std::string>("calib_path");
 
     int init           = parser.get<int>("init");
     bool verbose       = parser.has("verbose");
@@ -792,21 +823,19 @@ int main(int argc, char** argv)
         return 0;
     }
 
-    std::string dataset_dir="/home/wys/slam/PL-SVO/wysPL-SVO/config/";
-    //string img_dir = "/home/wys/slam/data/celling/dingshidata/2021-10-04-08-56-40/camera/color/image_raw";
-    string img_dir = "/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam1/data";
-    //YAML::Node dset_config = YAML::LoadFile("/home/wys/slam/PL-SVO/wysPL-SVO/config/dataset_params.yaml");
+    std::string dataset_dir = calib_path;
+    string img_dir;
+   
+
     ifstream imgfile;
-    imgfile.open("/home/wys/slam/data/EuRoC/MH_01_easy/mav0/cam1/data",ios::in);
-    getline(imgfile,dataset_dir,'\n');
-    
+    imgfile.open(files,ios::in);    
+    getline(imgfile,img_dir,'\n');
+    imgfile.close();
 
-
-    YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params.yaml");
-
+    std::cout<<"==========“calib_dir”=========="<<dataset_dir+calib<<std::endl;
+    YAML::Node dset_config = YAML::LoadFile(dataset_dir+calib);
     opts.dataset_dir = dataset_dir;
-    std::cout<<"==========“dataset_dir”=========="<<dataset_dir<<std::endl;
-
+    
     std::cout<<"==========“img_dir”=========="<<img_dir<<std::endl;
     opts.images_dir = img_dir;
 
