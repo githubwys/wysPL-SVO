@@ -117,7 +117,7 @@ Config::Config() :
     subpix_n_iter(10),
     max_n_kfs(0),
     img_imu_delay(0.0),
-    max_fts(100),
+    max_fts(100),// wys
     max_fts_segs(100),
     quality_min_fts(20),
     quality_max_drop_fts(50),

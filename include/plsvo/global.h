@@ -42,6 +42,10 @@
 #include <vikit/performance_monitor.h>
 #include <boost/shared_ptr.hpp>
 
+#define SVO_DEBUG_OUTPUT TRUE
+#define SVO_TRACE TRUE
+
+
 // Define macro for TODO messages
 // Statements like:
 //		#pragma message(TODO "Fix this problem!")
@@ -99,7 +103,8 @@ namespace plsvo
   const double EPS = 0.0000000001;
   const double PI = 3.14159265;
 
-#ifdef SVO_TRACE
+#ifdef SVO_TRACE //wys
+// #ifdef TRUE
   extern vk::PerformanceMonitor* g_permon;
   #define SVO_LOG(value) g_permon->log(std::string((#value)),(value))
   #define SVO_LOG2(value1, value2) SVO_LOG(value1); SVO_LOG(value2)

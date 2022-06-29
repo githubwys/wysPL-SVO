@@ -36,6 +36,8 @@
 
 #include <plsvo/check.h>
 
+#define debug_init false;
+
 namespace plsvo {
 namespace initialization {
 
@@ -44,6 +46,19 @@ InitResult KltHomographyInit::addFirstFrame(FramePtr frame_ref)
 {
   reset();
   detectFeatures(frame_ref, px_ref_, f_ref_);//先检测FAST特征点和边缘特征
+
+// #ifdef debug_init
+//   std::cout<<"px_ref_.size() = "<<px_ref_.size()<<std::endl;
+//   cv::Mat temp_detect= frame_ref->img();
+//   for(int i=0;i<(int)px_ref_.size();i++){
+//     cv::circle(temp_detect,cv::Point2f(px_ref_[i].x,px_ref_[i].y),5,cv::Scalar(0,255,0),2);
+//   }
+//   string str = "../experiment/temp_detect"+to_string(frame_ref->id_)+".jpg";// first-img
+//   imwrite(str,temp_detect);
+  
+
+// #endif
+
   //if(px_ref_.size() < 100)
   if(px_ref_.size() < 80)
   {
@@ -68,6 +83,18 @@ InitResult KltHomographyInit::addSecondFrame(FramePtr frame_cur)
 {
   trackKlt(frame_ref_, frame_cur, px_ref_, px_cur_, f_ref_, f_cur_, disparities_);
   SVO_INFO_STREAM("Init: KLT tracked "<< disparities_.size() <<" features");
+
+// #ifdef debug_init
+//   std::cout<<"px_cur_.size()"<<px_cur_.size()<<std::endl;
+//   cv::Mat temp_detect= frame_cur->img();
+//   for(int i=0;i<(int)px_cur_.size();i++){
+//     cv::circle(temp_detect,cv::Point2f(px_cur_[i].x,px_cur_[i].y),5,cv::Scalar(0,255,0),2);
+//   }
+//   string str = "../experiment/temp_detect"+to_string(frame_cur->id_)+".jpg";
+//   imwrite(str,temp_detect);
+
+// #endif
+
 
   // check the number of points tracked is high enough
   //检查跟踪的点数是否足够高

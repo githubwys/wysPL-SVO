@@ -54,10 +54,12 @@
 #include <boost/fusion/include/at_c.hpp>
 
 using namespace std;
+Eigen::Quaternion<double, Eigen::DontAlign> varName;
 
 string files="";
 string calib="";
 string calib_path="";
+cv::Mat undistortFishEye(const cv::Mat &distorted, const float w);
 
 // 首先定义了 svo_options的数据结构，里面包含的是程序的运行参数(一堆参数选项)
 struct svo_options {
@@ -184,7 +186,7 @@ int BenchmarkNode::runFromFolder(svo_options opts)
         {
             std::string filename(filename_path.string());
             imgs.push_back(filename);
-            max_len = max(max_len, filename.length());
+            max_len = std::max(max_len, filename.length());
         }
     }
 
@@ -322,7 +324,7 @@ int BenchmarkNode::runFromFolder(svo_options opts)
 
 int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts) // 主要程序
 {
-    std::cout<<"=========test1==========="<<std::endl;
+    std::cout<<"=========Pinhole camera model==========="<<std::endl;
     // grab options
     int seq_offset     = opts.seq_offset;
     int seq_step       = opts.seq_step;
@@ -539,6 +541,7 @@ int BenchmarkNode::runFromFolder(vk::PinholeCamera* cam_, svo_options opts) // �
 
 int BenchmarkNode::runFromFolder(vk::ATANCamera* cam_, svo_options opts)
 {
+     std::cout<<"=========ATAN camera model==========="<<std::endl;
 
     // grab options
     int seq_offset     = opts.seq_offset;
@@ -554,7 +557,7 @@ int BenchmarkNode::runFromFolder(vk::ATANCamera* cam_, svo_options opts)
     int fps_           = 30;
 
     // Read content of the .yaml dataset configuration file
-    YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params.yaml");
+    YAML::Node dset_config = YAML::LoadFile(dataset_dir+"/dataset_params_dso.yaml");
 
     // get a sorted list of files in the img directory
     boost::filesystem::path img_dir_path(images_dir.c_str());
@@ -636,10 +639,13 @@ int BenchmarkNode::runFromFolder(vk::ATANCamera* cam_, svo_options opts)
 
         // undistort image
         cv::Mat img_rec;
-        //cam_->undistortImage(img,img_rec);
+        std::cout<<"test1============="<<std::endl;
+        img_rec = undistortFishEye(img,0.93);
+        cv::imwrite("atan_img.jpg",img_rec);
 
         // process frame
-        vo_->addImage(img, frame_counter / (double)fps_);
+        // vo_->addImage(img, frame_counter / (double)fps_);
+        vo_->addImage(img_rec, frame_counter / (double)fps_);
 
         // display tracking quality
         if (vo_->lastFrame() != NULL) {
@@ -742,9 +748,9 @@ const cv::String keys =
     "{hasls haslines        |true      | bool to employ or not line segments }"
     "{mapout                |<none>     | name of the pcd output file for the map }"
     "{trajout               |trajout.txt | name of the output file for the trajectory }"
-    "{files               |../config/dataset_path.txt | name of the input file for the hole pipline }"
+    "{files               |../config/dataset_path_dsopinhole.txt | name of the input file for the hole pipline }"
     "{calib_path          |../config | path of the calib file }"
-    "{calib               |/dataset_params.yaml | name of the calib file }"
+    "{calib               |/dataset_params_dsopinhole.yaml | name of the calib file }"
     ;
 
 // Examples of use:
@@ -769,6 +775,30 @@ void parseArgument(char* arg)// 分析参数
         return;
     }
 	// printf("could not parse argument \"%s\"!!!!\n", arg);
+}
+
+cv::Mat undistortFishEye(const cv::Mat &distorted, const float w)
+{
+    cv::Mat map_x, map_y;
+    map_x.create(distorted.size(), CV_32FC1);
+    map_y.create(distorted.size(), CV_32FC1);
+
+    double Cx = distorted.cols / 2.0;
+    double Cy = distorted.rows / 2.0;
+
+    for (double x = -1.0; x < 1.0; x += 1.0/Cx) {
+        for (double y = -1.0; y < 1.0; y += 1.0/Cy) {
+            double ru = sqrt(x*x + y*y);
+            double rd = (1.0 / w)*atan(2.0*ru*tan(w / 2.0));
+
+            map_x.at<float>(y*Cy + Cy, x*Cx + Cx) = rd/ru * x*Cx + Cx;
+            map_y.at<float>(y*Cy + Cy, x*Cx + Cx) = rd/ru * y*Cy + Cy;
+        }
+    }
+
+    cv::Mat undistorted;
+    remap(distorted, undistorted, map_x, map_y, CV_INTER_LINEAR);
+    return undistorted;
 }
 
 int main(int argc, char** argv)
@@ -844,7 +874,7 @@ int main(int argc, char** argv)
     string camera_model = cam_config["cam_model"].as<string>();
     // std::cout<<"===================="<<dset_config<<std::endl;
     if( camera_model == "Pinhole" )//针孔相机模型
-    {
+    {   
         // setup cameras
         vk::PinholeCamera* cam_pin;
         vk::PinholeCamera* cam_pin_und;

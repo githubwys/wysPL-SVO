@@ -27,6 +27,7 @@
 
 #include <plsvo/sceneRepresentation.h>
 
+#include <unistd.h>
 // Constructors and destructor
 
 sceneRepresentation::sceneRepresentation(){
@@ -261,6 +262,7 @@ bool sceneRepresentation::updateScene(){
     // Update camera pose
     CPose3D x_aux(getPoseFormat(x));
     pose = pose + x_aux;
+    //sleep(1);
     v_aux_ = v_aux;
     pose.getAsVector(v_aux);
     if(hasTraj){
@@ -307,12 +309,16 @@ bool sceneRepresentation::updateScene(){
         srefObjGT->setPose(pose_gt);
     }
 
-    // Update the comparison camera pose
+    // Update the comparison camera pose 
+    // Core dumped segmentation flaut // wys  // debug wrong and Release right(sometimes) 
+    // about siyuanshu duiqi  //  gcc avxintrin.h _mm256_load_pd (double const *__P)
+    // https://eigen.tuxfamily.org/bz/show_bug.cgi?id=1233
     if(hasComparison){
         CPose3D x_aux1(getPoseFormat(xcomp));
         pose1 = pose1 + x_aux1;
-        v_aux1_ = v_aux1;
-        pose1.getAsVector(v_aux1);
+        //sleep(1);//wys
+        v_aux1_ = v_aux1;//
+        pose1.getAsVector(v_aux1);//
         if(hasTraj){
             CSimpleLinePtr obj = CSimpleLine::Create();
             obj->setLineCoords(v_aux1_(0),v_aux1_(1),v_aux1_(2), v_aux1(0),v_aux1(1),v_aux1(2));

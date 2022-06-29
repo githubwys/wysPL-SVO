@@ -1,29 +1,6 @@
 /media/wys/B2F4C82EF4C7F321/slamdata/EuRoC/MH_01_easy/mav0/cam0/data
+
 /home/wys/slam/PL-SVO/wysPL-SVO/config/
-
-/media/wys/B2F4C82EF4C7F321/slamdata/plsvo/zoulang/20220223_212546/device_0/sensor_1/Color_0/image/data
-/home/wys/slam/PL-SVO/wysPL-SVO/config/
-
-
-
-/media/wys/B2F4C82EF4C7F321/slamdata/plsvo/zoulang/20220223_212132/device_0/sensor_1/Color_0/image/data/
-/home/wys/slam/PL-SVO/wysPL-SVO/config/
-
-
-
-
-
-
-
-
-/media/wys/B2F4C82EF4C7F321/slamdata/DSO/sequence_01/images
-/home/wys/slam/PL-SVO/wysPL-SVO/config/
-
-
-
-
-
-
 
 
 第一行为图像位置

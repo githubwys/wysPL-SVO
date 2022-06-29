@@ -144,7 +144,7 @@ FrameHandlerMono::~FrameHandlerMono()
 //开始对图像进行处理
 void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp)
 {
-
+ std::cout<<"addImage(const cv::Mat& img, const double timestamp)"<<std::endl;
   img.copyTo(debug_img);
 
   if(!startFrameProcessingCommon(timestamp))
@@ -188,7 +188,7 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp)
 //开始对图像进行处理
 void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp, cv::Mat& rec)
 {
-
+  std::cout<<"addImage(const cv::Mat& img, const double timestamp, cv::Mat& rec)"<<std::endl;
   img.copyTo(debug_img);
 
   if(!startFrameProcessingCommon(timestamp))
@@ -313,8 +313,8 @@ FrameHandlerBase::UpdateResult FrameHandlerMono::processFrame()
             cv::line(debug_img,cv::Point2f(i->spx[0],i->spx[1]),cv::Point2f(i->epx[0],i->epx[1]),cv::Scalar(0,255,0));
       });
     }
-    //cv::imshow("cv: Ref image", debug_img);
-    //cv::waitKey(30);
+    // cv::imshow("cv: Ref image", debug_img);
+    // cv::waitKey(30);
   }
 
   // map reprojection & feature alignment // 地图重投影&特征对齐
