@@ -4,3 +4,7 @@
 但是用vscode和terminal就没问题，（terminal也可能崩溃，但是一般都能运行）
 ？？？
 烦死
+
+20220705
+1、特征点数量少
+fast 和 lsd参数？

@@ -259,76 +259,76 @@ bool sceneRepresentation::updateScene(){
     theScene = win->get3DSceneAndLock();
     bool restart = false;
 
-    // Update camera pose
-    CPose3D x_aux(getPoseFormat(x));
-    pose = pose + x_aux;
-    //sleep(1);
-    v_aux_ = v_aux;
-    pose.getAsVector(v_aux);
-    if(hasTraj){
-        CSimpleLinePtr obj = CSimpleLine::Create();
-        obj->setLineCoords(v_aux_(0),v_aux_(1),v_aux_(2), v_aux(0),v_aux(1),v_aux(2));
-        obj->setLineWidth(sline);
-        obj->setColor(0,0,0.7);
-        theScene->insert( obj );
-    }
-    bbObj->setPose(pose+frustumL_);
-    srefObj->setPose(pose);
-    if(hasFrustum){
-        frustObj->setPose(pose+frustumL_);
-        frustObj1->setPose(pose+frustumR_);
-    }
+    // // Update camera pose
+    // CPose3D x_aux(getPoseFormat(x));
+    // pose = pose + x_aux;
+    // //sleep(1);
+    // v_aux_ = v_aux;
+    // pose.getAsVector(v_aux);
+    // if(hasTraj){
+    //     CSimpleLinePtr obj = CSimpleLine::Create();
+    //     obj->setLineCoords(v_aux_(0),v_aux_(1),v_aux_(2), v_aux(0),v_aux(1),v_aux(2));
+    //     obj->setLineWidth(sline);
+    //     obj->setColor(0,0,0.7);
+    //     theScene->insert( obj );
+    // }
+    // bbObj->setPose(pose+frustumL_);
+    // srefObj->setPose(pose);
+    // if(hasFrustum){
+    //     frustObj->setPose(pose+frustumL_);
+    //     frustObj1->setPose(pose+frustumR_);
+    // }
 
-    // Update the GT camera pose
-    if(hasGT){
-        CPose3D x_auxgt(getPoseFormat(xgt));
-        //pose_gt = pose_gt + x_auxgt;
-        pose_gt = x_auxgt;
-        v_auxgt_ = v_auxgt;
+    // // Update the GT camera pose
+    // if(hasGT){
+    //     CPose3D x_auxgt(getPoseFormat(xgt));
+    //     //pose_gt = pose_gt + x_auxgt;
+    //     pose_gt = x_auxgt;
+    //     v_auxgt_ = v_auxgt;
 
-        pose_gt.getAsVector(v_auxgt);
-        float y_ = v_auxgt(1);
-        float z_ = v_auxgt(2);
-        float b_ = v_auxgt(4);
-        float c_ = v_auxgt(5);
-        v_auxgt(1) =  z_;
-        v_auxgt(2) = -y_;        
-        v_auxgt(4) = -c_;
-        v_auxgt(5) =  b_;
-        // pose_gt = TPose3D(v_auxgt(0),v_auxgt(1),v_auxgt(2),v_auxgt(3),v_auxgt(4),v_auxgt(5));
-        pose_gt = CPose3D(TPose3D(v_auxgt(0),v_auxgt(1),v_auxgt(2),v_auxgt(3),v_auxgt(4),v_auxgt(5)));
+    //     pose_gt.getAsVector(v_auxgt);
+    //     float y_ = v_auxgt(1);
+    //     float z_ = v_auxgt(2);
+    //     float b_ = v_auxgt(4);
+    //     float c_ = v_auxgt(5);
+    //     v_auxgt(1) =  z_;
+    //     v_auxgt(2) = -y_;        
+    //     v_auxgt(4) = -c_;
+    //     v_auxgt(5) =  b_;
+    //     // pose_gt = TPose3D(v_auxgt(0),v_auxgt(1),v_auxgt(2),v_auxgt(3),v_auxgt(4),v_auxgt(5));
+    //     pose_gt = CPose3D(TPose3D(v_auxgt(0),v_auxgt(1),v_auxgt(2),v_auxgt(3),v_auxgt(4),v_auxgt(5)));
 
-        if(hasTraj){
-            CSimpleLinePtr obj = CSimpleLine::Create();
-            obj->setLineCoords(v_auxgt_(0),v_auxgt_(1),v_auxgt_(2), v_auxgt(0),v_auxgt(1),v_auxgt(2));
-            obj->setLineWidth(sline);
-            obj->setColor(0,0,0);
-            theScene->insert( obj );
-        }
-        gtObj->setPose(pose_gt);
-        srefObjGT->setPose(pose_gt);
-    }
+    //     if(hasTraj){
+    //         CSimpleLinePtr obj = CSimpleLine::Create();
+    //         obj->setLineCoords(v_auxgt_(0),v_auxgt_(1),v_auxgt_(2), v_auxgt(0),v_auxgt(1),v_auxgt(2));
+    //         obj->setLineWidth(sline);
+    //         obj->setColor(0,0,0);
+    //         theScene->insert( obj );
+    //     }
+    //     gtObj->setPose(pose_gt);
+    //     srefObjGT->setPose(pose_gt);
+    // }
 
-    // Update the comparison camera pose 
-    // Core dumped segmentation flaut // wys  // debug wrong and Release right(sometimes) 
-    // about siyuanshu duiqi  //  gcc avxintrin.h _mm256_load_pd (double const *__P)
-    // https://eigen.tuxfamily.org/bz/show_bug.cgi?id=1233
-    if(hasComparison){
-        CPose3D x_aux1(getPoseFormat(xcomp));
-        pose1 = pose1 + x_aux1;
-        //sleep(1);//wys
-        v_aux1_ = v_aux1;//
-        pose1.getAsVector(v_aux1);//
-        if(hasTraj){
-            CSimpleLinePtr obj = CSimpleLine::Create();
-            obj->setLineCoords(v_aux1_(0),v_aux1_(1),v_aux1_(2), v_aux1(0),v_aux1(1),v_aux1(2));
-            obj->setLineWidth(sline);
-            obj->setColor(0,0.7,0);
-            theScene->insert( obj );
-        }
-        bbObj1->setPose(pose1+frustumL_);
-        srefObj1->setPose(pose1);
-    }
+    // // Update the comparison camera pose 
+    // // Core dumped segmentation flaut // wys  // debug wrong and Release right(sometimes) 
+    // // about siyuanshu duiqi  //  gcc avxintrin.h _mm256_load_pd (double const *__P)
+    // // https://eigen.tuxfamily.org/bz/show_bug.cgi?id=1233
+    // if(hasComparison){
+    //     CPose3D x_aux1(getPoseFormat(xcomp));
+    //     pose1 = pose1 + x_aux1;
+    //     //sleep(1);//wys
+    //     v_aux1_ = v_aux1;//
+    //     pose1.getAsVector(v_aux1);//
+    //     if(hasTraj){
+    //         CSimpleLinePtr obj = CSimpleLine::Create();
+    //         obj->setLineCoords(v_aux1_(0),v_aux1_(1),v_aux1_(2), v_aux1(0),v_aux1(1),v_aux1(2));
+    //         obj->setLineWidth(sline);
+    //         obj->setColor(0,0.7,0);
+    //         theScene->insert( obj );
+    //     }
+    //     bbObj1->setPose(pose1+frustumL_);
+    //     srefObj1->setPose(pose1);
+    // }
 
     // Update the text
     if(hasText){

@@ -90,7 +90,7 @@ Config::Config() :
     use_imu(false),
     core_n_kfs(5),
     map_scale(1.0),
-    grid_size(25),
+    grid_size(10),// wys   25
     grid_size_segs(25),
     init_min_disparity(40.0),
     init_min_tracked(40),
@@ -111,7 +111,7 @@ Config::Config() :
     loba_num_iter(0),
     kfselect_mindist_t(0.06),
     kfselect_mindist_r(3.0),
-    triang_min_corner_score(20.0),
+    triang_min_corner_score(5.0),// wys 20
     lsd_min_length(0.15),
     triang_half_patch_size(4),
     subpix_n_iter(10),
