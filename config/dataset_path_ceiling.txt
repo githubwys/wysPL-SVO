@@ -1,4 +1,4 @@
-/media/wys/B2F4C82EF4C7F321/slamdata/ourdata/celling/realsense/960540/960540_60hz/20220124_225334/device_0/sensor_1/Color_0/image/data
+/media/wys/B2F4C82EF4C7F321/slamdata/ourdata/ceiling/realsense/960540/960540/20220124_225334/device_0/sensor_1/Color_0/image/data
 
 
 第一行为图像位置

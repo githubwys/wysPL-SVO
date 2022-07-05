@@ -748,9 +748,9 @@ const cv::String keys =
     "{hasls haslines        |true      | bool to employ or not line segments }"
     "{mapout                |<none>     | name of the pcd output file for the map }"
     "{trajout               |trajout.txt | name of the output file for the trajectory }"
-    "{files               |../config/dataset_path_dsopinhole.txt | name of the input file for the hole pipline }"
+    "{files               |../config/dataset_path_ceiling.txt | name of the input file for the hole pipline }"
     "{calib_path          |../config | path of the calib file }"
-    "{calib               |/dataset_params_dsopinhole.yaml | name of the calib file }"
+    "{calib               |/dataset_params_ceiling.yaml | name of the calib file }"
     ;
 
 // Examples of use:
